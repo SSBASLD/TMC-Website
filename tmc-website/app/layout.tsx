@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
 import { lusitana } from "./ui/fonts";
 import "./globals.css";
+import NavLinks from "./ui/default-layout/nav-links";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,22 +21,11 @@ export default function RootLayout({
           {children}
         </div>
 
-        <div className={`absolute top-0 w-screen h-[12%] text-[4vw] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className}`}>
+        <div className={`absolute bottom-[88%] w-screen h-[10%] text-[4vw] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className}`}>
           Tennessee Math Coalition
         </div>
         <div className='absolute top-[12%] left-0 right-0 w-screen h-[8%] bg-auto bg-slate-500 grid grid-cols-[7%_8%_12%_13%_52%_8%]'>
-          <div className={`flex items-center justify-center text-[1vw] ${inter.className}`}>
-            Home
-          </div>
-          <div className={`flex items-center justify-center text-[1vw] ${inter.className}`}>
-            Team Login
-          </div>
-          <div className={`flex items-center justify-center text-[1vw] ${inter.className}`}>
-            Individual Login
-          </div>
-          <div className={`flex items-center justify-center text-[1vw] ${inter.className}`}>
-            Contest Information
-          </div>
+          <NavLinks></NavLinks>
 
           <div></div>
 
