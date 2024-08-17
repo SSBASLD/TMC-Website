@@ -3,7 +3,7 @@ import { lusitana } from "../ui/fonts";
 export default function Home() {
   return (
     <main>
-      <div className={`absolute top-[8%] left-[10%] right-[10%] w-[80%] h-[10%] flex items-center justify-left text-[300%] ${lusitana.className} text-black`}>
+      <div className={`absolute top-[8%] left-[10%] right-[10%] w-[80%] h-[10%] flex items-center justify-left ${lusitana.className} text-black Laptop:text-[50px] Tablet:text-[39px] Mobile-L:text-[22px]`}>
         Welcome to the [PLACEHOLDER]!
       </div>
       <div className={`absolute top-[16%] left-[10%] right-[10%] w-[80%] h-[10%] flex items-center justify-left text-[150%] ${lusitana.className} text-black`}>

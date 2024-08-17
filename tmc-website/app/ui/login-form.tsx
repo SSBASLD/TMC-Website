@@ -1,11 +1,11 @@
 import { inter } from "./fonts";
 import Image from "next/image";
 
-export default function LoginForm() {
+export default function LoginForm({loginType}: {loginType: string}) {
     return (
         <>
             <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black text-[1.5vw]`}>
-                Team - Sign In <br></br>
+                {loginType} - Sign In <br></br>
 
                 <div className={`h-[15%]`}></div>
 

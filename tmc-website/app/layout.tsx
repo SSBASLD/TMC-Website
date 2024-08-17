@@ -21,10 +21,18 @@ export default function RootLayout({
           {children}
         </div>
 
-        <div className={`absolute bottom-[88%] w-screen h-[10%] text-[4vw] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className}`}>
-          Tennessee Math Coalition
+        <div className={`absolute bottom-[88%] w-screen h-[10%] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className} Tablet:text-[60px] Mobile-L:text-[37px] Mobile-S:text-[28px]`}>
+          <span className={`absolute -bottom-[10%] align-text-bottom`}>
+            Tennessee Math Coalition
+          </span>
         </div>
-        <div className='absolute top-[12%] left-0 right-0 w-screen h-[8%] bg-auto bg-slate-500 grid grid-cols-[7%_8%_12%_13%_52%_8%]'>
+
+        <div className='absolute top-[12%] left-0 right-0 w-[100%] h-[8%] bg-auto bg-slate-500 grid 
+          Laptop:grid-cols-[7%_8%_12%_13%_52%_8%] 
+          Mobile-S:grid-cols-[9%_15%_20%_23%_25%_8%]
+          Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]
+        '>
+
           <NavLinks></NavLinks>
 
           <div></div>
