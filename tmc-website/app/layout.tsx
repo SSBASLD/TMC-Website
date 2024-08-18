@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + 'bg-auto bg-slate-50'}>
+      <body className={`${inter.className} bg-auto bg-slate-50 overflow-auto`}>
         <div className={`absolute top-[20%] w-screen h-[72%]`}>
           {children}
         </div>
@@ -44,7 +44,11 @@ export default function RootLayout({
 
         <div className='absolute bottom-[8%] w-screen h-[0.5%] bg-auto bg-blue-900'></div>
 
-        <div className='absolute bottom-0 w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500 text-[1vw]'>
+        <div className='absolute bottom-0 w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500
+          Mobile-S:text-[10px]
+          Mobile-M:text-[12px]
+          Tablet:text-[20px]'
+        >
           For issues or questions contact [tnmathcoalition@gmail.com]
         </div>
       </body>
