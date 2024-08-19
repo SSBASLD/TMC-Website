@@ -20,7 +20,7 @@ const config: Config = {
         'Tablet': '768px',
         'Mobile-L': '425px',
         'Mobile-M': '375px',
-        'Mobile-S': '320px'
+        'Mobile-S': '320px',
       },
     },
   },

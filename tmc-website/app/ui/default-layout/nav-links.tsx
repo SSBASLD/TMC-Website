@@ -27,7 +27,7 @@ export default function NavLinks() {
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            `flex items-center justify-center ${inter.className} hover:text-blue-300 4K:text-[20px] text-center 
+                            `flex items-center justify-center ${inter.className} hover:text-blue-300 text-center 
                                 Mobile-S:text-[12px]
                                 Tablet:text-[13px]
                                 Laptop-L:text-[20px]`,

@@ -16,22 +16,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-auto bg-slate-50 overflow-auto`}>
-        <div className={`absolute top-[20%] w-screen h-[72%]`}>
-          {children}
-        </div>
-
-        <div className={`absolute bottom-[88%] w-screen h-[10%] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className} Tablet:text-[60px] Mobile-L:text-[37px] Mobile-S:text-[28px]`}>
-          <span className={`absolute -bottom-[10%] align-text-bottom`}>
+      <body className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen`}>
+        <div className={`w-screen h-[10%] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className} Tablet:text-[60px] Mobile-L:text-[37px] Mobile-S:text-[28px]`}>
+          <span className={`align-text-bottom`}>
             Tennessee Math Coalition
           </span>
         </div>
 
-        <div className='absolute top-[12%] left-0 right-0 w-[100%] h-[8%] bg-auto bg-slate-500 grid 
+        <div className='w-[100%] h-[8%] bg-auto bg-slate-500 grid 
           Laptop:grid-cols-[7%_8%_12%_13%_52%_8%] 
           Mobile-S:grid-cols-[9%_15%_20%_23%_25%_8%]
-          Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]
-        '>
+          Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]'
+        >
 
           <NavLinks></NavLinks>
 
@@ -42,9 +38,13 @@ export default function RootLayout({
           </div>
         </div>
 
-        <div className='absolute bottom-[8%] w-screen h-[0.5%] bg-auto bg-blue-900'></div>
+        <div className={`w-screen h-[72%]`}>
+          {children}
+        </div>
 
-        <div className='absolute bottom-0 w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500
+        <div className='w-screen h-[0.5%] bg-auto bg-blue-900'></div>
+
+        <div className='w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500
           Mobile-S:text-[10px]
           Mobile-M:text-[12px]
           Tablet:text-[20px]'
