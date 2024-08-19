@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen min-h-[900px]`}>
+      <body className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen min-h-[950px]`}>
         <div className={`w-screen h-[10%] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className} Tablet:text-[60px] Mobile-L:text-[37px] Mobile-S:text-[28px]`}>
           <span className={`align-text-bottom`}>
             Tennessee Math Coalition
@@ -28,7 +28,6 @@ export default function RootLayout({
           Mobile-S:grid-cols-[9%_15%_20%_23%_25%_8%]
           Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]'
         >
-
           <NavLinks></NavLinks>
 
           <div></div>
@@ -38,7 +37,7 @@ export default function RootLayout({
           </div>
         </div>
 
-        <div className={`w-screen h-[72%] overflow-auto`}>
+        <div className={`w-screen h-[72%]`}>
           {children}
         </div>
 
