@@ -18,7 +18,7 @@ export default function Home() {
         A student-run high school team and individual competition
       </p>
 
-      <div className={`w-[100%] h-[75%] outline outline-cyan-700 outline-width-[1vw] p-[1%] min-h-[550px] ${lusitana.className} text-black overflow-auto
+      <div className={`w-[100%] h-[75%] outline outline-cyan-700 outline-width-[1vw] p-[1%] ${lusitana.className} text-black overflow-auto
         Mobile-S:text-[25px]
         Tablet:text-[30px]`}
       >
