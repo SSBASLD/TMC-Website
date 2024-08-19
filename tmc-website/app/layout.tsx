@@ -38,7 +38,7 @@ export default function RootLayout({
           </div>
         </div>
 
-        <div className={`w-screen h-[72%]`}>
+        <div className={`w-screen h-[72%] overflow-auto`}>
           {children}
         </div>
 
