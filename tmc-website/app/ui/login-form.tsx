@@ -4,14 +4,16 @@ import Image from "next/image";
 export default function LoginForm({loginType}: {loginType: string}) {
     return (
         <>
-            <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black text-[1.5vw]`}>
+            <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black
+                Mobile-S:text-[30px]
+                Tablet:text-[40px]`}>
                 {loginType} - Sign In <br></br>
 
                 <div className={`h-[15%]`}></div>
 
-                <div className="relative h-[10%] content-right">
+                <div className="relative h-[65px] content-right">
                     <input
-                        className={`absolute left-[3%] peer block w-[50%] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[0.5%] text-sm outline-2 placeholder:text-gray-500`}
+                        className={`absolute left-[65px] peer block w-[50%] min-w-[200px] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[0.5%] text-sm outline-2 placeholder:text-gray-500`}
                         id="username"
                         type="username"
                         name="username"
@@ -20,7 +22,7 @@ export default function LoginForm({loginType}: {loginType: string}) {
                     >
                     </input>
 
-                    <div className={`absolute w-[3%] h-[100%] bg-auto bg-gray-300 rounded-l-md flex justify-center items-center`}>
+                    <div className={`absolute size-[65px] bg-auto bg-gray-300 rounded-l-md flex justify-center items-center`}>
                         <Image
                             src="/UserPic.png"
                             width={512}
@@ -33,9 +35,9 @@ export default function LoginForm({loginType}: {loginType: string}) {
 
                 <div className={`h-[10%]`}></div>
 
-                <div className="relative h-[10%] content-right">
+                <div className="relative h-[65px] content-right">
                     <input
-                        className={`absolute left-[3%] peer block w-[50%] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[0.5%] text-sm outline-2 placeholder:text-gray-500`}
+                        className={`absolute left-[65px] peer block w-[50%] h-[100%] min-w-[200px] rounded-r-md border border-gray-200 py-[0.5%] pl-[0.5%] text-sm outline-2 placeholder:text-gray-500`}
                         id="password"
                         type="password"
                         name="password"
@@ -44,7 +46,7 @@ export default function LoginForm({loginType}: {loginType: string}) {
                     >
                     </input>
 
-                    <div className={`absolute w-[3%] h-[100%] bg-auto bg-gray-300 rounded-l-md flex justify-center items-center`}>
+                    <div className={`absolute size-[65px] bg-auto bg-gray-300 rounded-l-md flex justify-center items-center`}>
                         <Image
                             src="/Lock.png"
                             width={512}
@@ -57,12 +59,20 @@ export default function LoginForm({loginType}: {loginType: string}) {
 
                 <div className="h-[30%]"></div>
 
-                <div className={`relative w-[100%] h-[10%]`}>
-                    <button className={`bg-auto bg-cyan-700 w-[6%] h-[100%] p-[0.8%] flex justify-center items-center ${inter.className} text-white text-[1vw]`}>
+                <div className={`relative w-[100%] h-[10%] grid
+                    Mobile-S:grid-cols-[max(125px,6%)_50%]`}
+                >
+                    <button className={`bg-auto bg-cyan-700 w-[6%] min-w-[100px] h-[100%] p-[0.8%] flex justify-center items-center ${inter.className} text-white 
+                        Mobile-S:text-[15px]
+                        Mobile-L:text-[20px]`}
+                    >
                         Sign In
                     </button>
 
-                    <div className={`absolute top-0 left-[10%] h-[100%] ${inter.className} text-[1.3vw] flex justify-center items-center`}>
+                    <div className={`h-[100%] ${inter.className} flex items-center justify-left
+                        Mobile-S:text-[15px]
+                        Mobile-L:text-[20px]`}
+                    >
                         Don't have an account? Sign up!
                     </div>
                 </div>
