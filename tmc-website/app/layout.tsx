@@ -25,16 +25,10 @@ export default function RootLayout({
 
         <div className='w-[100%] h-[8%] bg-auto bg-slate-500 grid 
           Laptop:grid-cols-[7%_8%_12%_13%_52%_8%] 
-          Mobile-S:grid-cols-[9%_15%_20%_23%_25%_8%]
+          Mobile-S:grid-cols-[13%_20%_25%_35%]
           Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]'
         >
           <NavLinks></NavLinks>
-
-          <div></div>
-
-          <div className={`flex items-center justify-center text-[1vw] ${inter.className}`}>
-            Sign Out
-          </div>
         </div>
 
         <div className={`w-screen h-[72%]`}>
