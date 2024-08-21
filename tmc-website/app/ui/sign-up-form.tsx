@@ -9,7 +9,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
 
                 Create an Account<br></br>
 
-                <div className={`h-[5%]`}></div>
+                <div className={`h-[2%]`}></div>
 
                 <input
                     className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
@@ -21,7 +21,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 >
                 </input>
 
-                <div className={`h-[5%]`}></div>
+                <div className={`h-[2%]`}></div>
 
                 <input
                     className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
@@ -34,7 +34,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 </input>
                 <br></br>
 
-                <div className={`h-[5%]`}></div>
+                <div className={`h-[2%]`}></div>
 
                 <input
                     className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
@@ -46,6 +46,21 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 >
                 </input>
                 <br></br>
+
+                <div className={`h-[10%]`}></div>
+
+                <p className={`text-[20px]`}>
+                    Already have an account? Log in
+                </p>
+
+                <div className='h-[4%]'></div>
+
+                <p className={`text-[20px]`}>
+                    <input type='checkbox' className={`w-[2%]`}></input>
+                    I want to recieve emails about TMC and related updates.
+                </p>
+
+                <button></button>
             </div>
         </>
     );
