@@ -57,10 +57,17 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
 
                 <p className={`text-[20px]`}>
                     <input type='checkbox' className={`w-[2%]`}></input>
-                    I want to recieve emails about TMC and related updates.
+                    I want to receive emails about TMC and related updates.
                 </p>
 
-                <button></button>
+                <div className='h-[6%]'></div>
+
+                <button className={`w-[20%] min-w-[200px] h-[80px] bg-auto bg-cyan-700 justify-center items-center
+                    Laptop:text-[35px]
+                    Tablet:text-[30px]
+                    Mobile-S:text-[20px]`}>
+                    Sign Up
+                </button>
             </div>
         </>
     );
