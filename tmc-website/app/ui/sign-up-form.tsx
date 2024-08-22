@@ -7,7 +7,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 Mobile-S:text-[30px]
                 Tablet:text-[40px]`}>
 
-                Create an Account<br></br>
+                Create a {signUpType} Account<br></br>
 
                 <div className={`h-[2%]`}></div>
 
@@ -56,16 +56,17 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className='h-[4%]'></div>
 
                 <p className={`text-[20px]`}>
-                    <input type='checkbox' className={`w-[2%]`}></input>
+                    <input type='checkbox' className={`h-[100%] w-[2%] min-w-[13px]`}></input>
                     I want to receive emails about TMC and related updates.
                 </p>
 
                 <div className='h-[6%]'></div>
 
-                <button className={`w-[20%] min-w-[200px] h-[80px] bg-auto bg-cyan-700 justify-center items-center
+                <button className={`w-[20%] min-w-[200px] h-[60px] bg-auto bg-cyan-600 justify-center items-center
                     Laptop:text-[35px]
                     Tablet:text-[30px]
-                    Mobile-S:text-[20px]`}>
+                    Mobile-S:text-[20px]`}
+                >
                     Sign Up
                 </button>
             </div>
