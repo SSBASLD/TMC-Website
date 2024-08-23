@@ -1,5 +1,6 @@
 import { inter } from "./fonts";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'}) {
     return (
@@ -60,7 +61,7 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
                 <div className="h-[30%]"></div>
 
                 <div className={`relative w-[100%] h-[10%] grid
-                    Mobile-S:grid-cols-[max(125px,6%)_50%]`}
+                    Mobile-S:grid-cols-[max(125px,6%)_60%]`}
                 >
                     <button className={`bg-auto bg-cyan-700 w-[6%] min-w-[100px] h-[100%] p-[0.8%] flex justify-center items-center ${inter.className} text-white 
                         Mobile-S:text-[15px]
@@ -69,12 +70,16 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
                         Sign In
                     </button>
 
-                    <div className={`h-[100%] ${inter.className} flex items-center justify-left
-                        Mobile-S:text-[15px]
+                    <p className={`h-[100%] ${inter.className} flex items-center justify-left
+                        Mobile-M:text-[13px]
+                        Mobile-S:text-[10.5px]
                         Mobile-L:text-[20px]`}
                     >
-                        Don't have an account? Sign up!
-                    </div>
+                        Don't have an account? ​
+                        <Link key={`${loginType} Sign Up`} href={`/sign-up-${loginType.toLowerCase()}`} className={`text-blue-400`}>
+                            Sign up!
+                        </Link>
+                    </p>
                 </div>
             </div>
         </>

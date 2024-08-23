@@ -1,4 +1,5 @@
 import { inter } from "./fonts";
+import Link from "next/link";
 
 export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individual'}) {
     return (
@@ -50,7 +51,9 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className={`h-[10%]`}></div>
 
                 <p className={`text-[20px]`}>
-                    Already have an account? Log in
+                    Already have an account? <Link key={`${signUpType} Log In`} href={`${signUpType.toLowerCase()}-login`} className={`text-blue-400`}>
+                        Log in!
+                    </Link>
                 </p>
 
                 <div className='h-[4%]'></div>
