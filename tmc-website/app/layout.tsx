@@ -17,7 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen min-h-[950px] overflow-x-hidden`}>
-        <div className={`w-screen h-[10%] pl-[1vw] pb-[1vw] text-cyan-700 ${lusitana.className} Tablet:text-[60px] Mobile-L:text-[37px] Mobile-S:text-[28px]`}>
+        <div className={`w-screen h-[5%] pl-[1vw] pb-[1vw] pt-[0px] text-cyan-700 ${lusitana.className} 
+          Tablet:text-[60px] Tablet:h-[7%]
+          Mobile-L:text-[37px] Mobile-L:h-[5%]
+          Mobile-S:text-[28px] Mobile-S:h-[3%]`}
+        >
           <span className={`align-text-bottom`}>
             Tennessee Math Coalition
           </span>
