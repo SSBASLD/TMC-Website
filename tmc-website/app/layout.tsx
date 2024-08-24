@@ -19,8 +19,8 @@ export default function RootLayout({
       <body className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen min-h-[950px] overflow-x-hidden`}>
         <div className={`w-screen h-[5%] pl-[1vw] pb-[1vw] pt-[0px] text-cyan-700 ${lusitana.className} 
           Tablet:text-[60px] Tablet:h-[7%]
-          Mobile-L:text-[37px] Mobile-L:h-[5%]
-          Mobile-S:text-[28px] Mobile-S:h-[4%]`}
+          Mobile-L:text-[34px] Mobile-L:h-[4%]
+          Mobile-S:text-[25px] Mobile-S:h-[3%]`}
         >
           <span className={`align-text-bottom`}>
             Tennessee Math Coalition

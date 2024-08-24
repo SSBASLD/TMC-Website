@@ -72,11 +72,17 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
 
                     <p className={`h-[100%] ${inter.className} flex items-center justify-left
                         Mobile-M:text-[13px]
-                        Mobile-S:text-[10.5px]
-                        Mobile-L:text-[20px]`}
+                        Mobile-S:text-[10.5px] 
+                        Mobile-L:text-[20px]
+                        Tablet:relative`}
                     >
                         Don't have an account? ​
-                        <Link key={`${loginType} Sign Up`} href={`/sign-up-${loginType.toLowerCase()}`} className={`text-blue-400`}>
+                        <Link key={`${loginType} Sign Up`} href={`/sign-up-${loginType.toLowerCase()}`} className={`text-blue-400 
+                            min-[585px]:relative min-[585px]:top-[0%]
+                            Mobile-S:absolute Mobile-S:top-[60%]
+                            Mobile-L:top-[40%] min-[426px]:top-[60%]
+                            Mobile-M:top-[60%]`}
+                        >
                             Sign up!
                         </Link>
                     </p>
