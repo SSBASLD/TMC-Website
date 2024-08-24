@@ -59,7 +59,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className='h-[4%]'></div>
 
                 <p className={`text-[20px]`}>
-                    <input type='checkbox' className={`h-[100%] w-[2%] min-w-[13px]`}></input>
+                    <input type='checkbox' className={`w-[2%] min-w-[13px]`}></input>
                     I want to receive emails about TMC and related updates.
                 </p>
 
