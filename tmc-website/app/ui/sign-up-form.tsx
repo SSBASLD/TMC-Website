@@ -13,7 +13,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className={`h-[2%]`}></div>
 
                 <input
-                    className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    className={`w-[50%] min-w-[200px] h-[10%] rounded-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
                     id="username"
                     type="username"
                     name="username"
@@ -25,7 +25,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className={`h-[2%]`}></div>
 
                 <input
-                    className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    className={`w-[50%] min-w-[200px] h-[10%] rounded-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
                     id="email"
                     type="email"
                     name="email"
@@ -38,7 +38,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className={`h-[2%]`}></div>
 
                 <input
-                    className={`w-[50%] min-w-[200px] h-[10%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    className={`w-[50%] min-w-[200px] h-[10%] rounded-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
                     id="password"
                     type="password"
                     name="password"

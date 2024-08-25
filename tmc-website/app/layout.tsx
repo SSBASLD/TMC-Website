@@ -41,13 +41,13 @@ export default function RootLayout({
 
         <div className='w-screen h-[0.5%] bg-auto bg-blue-900'></div>
 
-        <div className='w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500
+        <span className='w-screen h-[8%] origin-bottom bg-auto flex items-center justify-center text-cyan-500
           Mobile-S:text-[10px]
           Mobile-M:text-[12px]
           Tablet:text-[20px]'
         >
           For issues or questions contact [tnmathcoalition@gmail.com]
-        </div>
+        </span>
       </body>
     </html>
   );
