@@ -14,7 +14,7 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
 
                 <div className="relative h-[65px] content-right">
                     <input
-                        className={`absolute left-[65px] peer block w-[50%] min-w-[200px] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
+                        className={`absolute left-[65px] peer block w-[77%] min-w-[200px] max-w-[700px] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
                         id="username"
                         type="username"
                         name="username"
@@ -38,7 +38,7 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
 
                 <div className="relative h-[65px] content-right">
                     <input
-                        className={`absolute left-[65px] peer block w-[50%] h-[100%] min-w-[200px] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
+                        className={`absolute left-[65px] peer block w-[77%] min-w-[200px] max-w-[700px] h-[100%] min-w-[200px] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
                         id="password"
                         type="password"
                         name="password"
@@ -58,7 +58,9 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
                     </div>
                 </div>
 
-                <div className="h-[30%]"></div>
+                <div className="h-[30%]
+                    Tablet:h-[30%]
+                    Mobile-S:h-[100px]"></div>
 
                 <div className={`relative w-[100%] h-[10%] grid
                     Mobile-S:grid-cols-[max(125px,6%)_60%]`}

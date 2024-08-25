@@ -65,7 +65,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
 
                 <div className='h-[6%]'></div>
 
-                <button className={`w-[20%] min-w-[200px] h-[60px] bg-auto bg-cyan-600 justify-center items-center
+                <button className={`w-[20%] min-w-[200px] h-[60px] bg-auto bg-cyan-600 justify-center items-center text-white
                     Laptop:text-[30px]
                     Tablet:text-[30px]
                     Mobile-S:text-[20px]`}
