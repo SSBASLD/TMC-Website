@@ -11,9 +11,9 @@ import { inter } from "../fonts";
 //Shouldn't be that much so no need to store on DB
 const links = [
     { name: 'Home', href: '/' },
-    { name: 'Team Login', href: '/team-login' },
-    { name: 'Individual Login', href: '/individual-login' },
-    { name: 'Contest Information', href: '/contest-information' },
+    { name: 'Team Login', href: '/dashboard/team-login' },
+    { name: 'Individual Login', href: '/dashboard/individual-login' },
+    { name: 'Contest Information', href: '/dashboard/contest-information' },
 ];
 
 export default function NavLinks() {

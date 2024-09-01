@@ -1,9 +1,15 @@
+'use client'
+
 import { inter } from "./fonts";
 import Link from "next/link";
+import { createUser } from "../lib/actions";
+import { useFormState, useFormStatus } from "react-dom";
 
 export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individual'}) {
+    const [state, formAction] = useFormState(createUser, undefined);
+
     return (
-        <>
+        <form action={formAction} className="h-[100%]">
             <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black text-center
                 Mobile-S:text-[30px]
                 Tablet:text-[40px]`}>
@@ -48,7 +54,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 </input>
                 <br></br>
 
-                <div className={`h-[10%]`}></div>
+                <div className={`h-[10%] text-[15px] text-red-500`}>{state}</div>
 
                 <p className={`text-[20px]`}>
                     Already have an account? <Link key={`${signUpType} Log In`} href={`${signUpType.toLowerCase()}-login`} className={`text-blue-400`}>
@@ -65,14 +71,14 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
 
                 <div className='h-[6%]'></div>
 
-                <button className={`w-[20%] min-w-[200px] h-[60px] bg-auto bg-cyan-600 justify-center items-center text-white
-                    Laptop:text-[30px]
-                    Tablet:text-[30px]
+                <button className={`w-[10%] min-w-[200px] h-[50px] bg-auto bg-cyan-700 justify-center items-center text-white hover:bg-cyan-600 active:bg-cyan-900
+                    Laptop:text-[25px]
+                    Tablet:text-[25px]
                     Mobile-S:text-[20px]`}
                 >
                     Sign Up
                 </button>
             </div>
-        </>
+        </form>
     );
 }

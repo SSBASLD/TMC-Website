@@ -1,6 +1,5 @@
-import { lusitana } from "../ui/fonts";
-import { inter } from "../ui/fonts";
-import SignUpForm from "../ui/sign-up-form";
+import { lusitana, inter } from "@/app/ui/fonts";
+import SignUpForm from "@/app/ui/sign-up-form";
 
 export default function Home() {
     return (
