@@ -35,7 +35,8 @@ export async function createUser(prevState: string | undefined, formData: FormDa
         return 'A user with that email already exists!';
     }
 
-    const hashedPassword = await bcrypt.hash(formData.get('password'), 10);
+    let password = formData.get('password') as string;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
         await users.insertOne({
