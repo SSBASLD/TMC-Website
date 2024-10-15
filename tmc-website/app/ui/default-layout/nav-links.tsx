@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { inter } from "../fonts";
+import { useRef, useEffect } from "react";
+import { signOutAsync } from "@/app/lib/actions";
 
 //Map of Links
 //Shouldn't be that much so no need to store on DB

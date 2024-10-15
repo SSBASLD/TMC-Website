@@ -1,6 +1,10 @@
 import { lusitana } from "@/app/ui/fonts";
+import { signOutAsync } from "../lib/actions";
+import { useEffect, useRef } from "react";
+import AutoSignOutForm from "../ui/automatic-sign-out";
 
 export default function Home() {
+
   return (
     <main className={`p-[2%] w-[100%] h-[100%]`}>
       <p className={`top-[8%] left-[10%] right-[10%] flex items-center justify-left ${lusitana.className} text-black
@@ -40,6 +44,8 @@ export default function Home() {
       >
         Note: All competition times are in CST
       </div>
+
+      <AutoSignOutForm></AutoSignOutForm>
     </main>
   );
 }

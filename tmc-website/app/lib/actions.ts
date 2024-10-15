@@ -5,6 +5,7 @@ import { AuthError } from "next-auth";
 import { client } from "@/app/modules/database";
 import { User } from "@/app/lib/definitions";
 import bcrypt from 'bcrypt';
+import { signOut } from "@/auth";
 
 const database = client.connect();
 
@@ -48,4 +49,8 @@ export async function createUser(prevState: string | undefined, formData: FormDa
     } catch (error) {
         return 'Something went wrong! Try again';
     }
+}
+
+export async function signOutAsync() {
+    await signOut();
 }

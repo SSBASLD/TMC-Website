@@ -1,4 +1,4 @@
-import type {NextAuthConfig} from 'next-auth';
+import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
     pages: {
@@ -6,7 +6,12 @@ export const authConfig = {
     },
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
-          return true;
+            const isLoggedIn = !!auth?.user;
+            const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
+
+            console.log(isLoggedIn);
+
+            return true;
         },
     },
     providers: [], // Add providers with an empty array for now

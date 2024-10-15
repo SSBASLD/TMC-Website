@@ -10,8 +10,6 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
     const [state, formAction] = useFormState(authenticate, undefined);
     const { pending } = useFormStatus();
 
-    console.log(state);
-
     return (
         <form action={formAction} className="h-[100%]">
             <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black
