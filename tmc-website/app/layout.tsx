@@ -5,6 +5,7 @@ import "./globals.css";
 import NavLinks from "./ui/default-layout/nav-links";
 import { useEffect, useRef } from "react";
 import { signOutAsync } from "./lib/actions";
+import { signOut } from "@/auth";
 
 export const metadata: Metadata = {
   title: "TMC Competition Website",
@@ -29,12 +30,25 @@ export default function RootLayout({
           </span>
         </div>
 
-        <div className='w-[100%] h-[8%] bg-auto bg-slate-500 grid 
+        <div className={`w-[100%] h-[8%] bg-auto bg-slate-500 grid 
           Laptop:grid-cols-[7%_8%_12%_13%_52%_8%] 
-          Mobile-S:grid-cols-[13%_20%_25%_35%]
-          Tablet:grid-cols-[10%_13%_20%_20%_29%_8%]'
+          Mobile-S:grid-cols-[13%_20%_25%_25%_5%_12%]
+          Tablet:grid-cols-[10%_13%_20%_20%_27%_10%]`}
         >
           <NavLinks></NavLinks>
+          <div></div>
+          <form action={async () => {
+            'use server';
+            await signOut();
+          }} className={`flex items-center justify-center`}>
+            <button className={`text-white text-center hover:text-blue-300
+              Mobile-S:text-[12px]
+              Tablet:text-[13px]
+              Laptop-L:text-[20px]`}
+            >
+              Sign Out
+            </button>
+          </form>
         </div>
 
         <div className={`w-screen h-[72%]`}>

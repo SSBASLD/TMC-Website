@@ -60,6 +60,7 @@ export async function createUser(prevState: string | undefined, formData: FormDa
             email: formData.get('email'),
             password: hashedPassword
         });
+        authenticate(undefined, formData);
         return 'Successfully created account!'
     } catch (error) {
         return 'Something went wrong! Try again';
@@ -68,4 +69,5 @@ export async function createUser(prevState: string | undefined, formData: FormDa
 
 export async function signOutAsync() {
     await signOut();
+    return "Signing out";
 }

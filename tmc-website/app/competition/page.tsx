@@ -1,7 +1,6 @@
 import { lusitana } from "@/app/ui/fonts";
 import { signOutAsync } from "../lib/actions";
 import { useEffect, useRef } from "react";
-import AutoSignOutForm from "../ui/automatic-sign-out";
 
 export default function Home() {
 
