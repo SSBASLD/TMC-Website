@@ -18,7 +18,7 @@ async function getUser(email: string): Promise<User | null> {
     throw new Error('Failed to fetch user.');
   }
 }
- 
+
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
@@ -36,7 +36,7 @@ export const { auth, signIn, signOut } = NextAuth({
           const passwordsMatch = await bcrypt.compare(password, user.password);
           if (passwordsMatch) return user;
         }
- 
+
         return null;
       },
     }),
