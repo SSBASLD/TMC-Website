@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
-import { lusitana } from "./ui/fonts";
+import { lusitana } from "@/app/ui/fonts";
 import "./globals.css";
 import NavLinks from "./ui/default-layout/nav-links";
 import { useEffect, useRef } from "react";
@@ -31,9 +31,9 @@ export default function RootLayout({
         </div>
 
         <div className={`w-[100%] h-[8%] bg-auto bg-slate-500 grid 
-          Laptop:grid-cols-[7%_8%_12%_13%_52%_8%] 
+          Laptop:grid-cols-[7%_12%_14%_13%_45%_9%] 
           Mobile-S:grid-cols-[13%_20%_25%_25%_5%_12%]
-          Tablet:grid-cols-[10%_13%_20%_20%_27%_10%]`}
+          Tablet:grid-cols-[10%_13%_18%_18%_31%_10%]`}
         >
           <NavLinks></NavLinks>
           <div></div>

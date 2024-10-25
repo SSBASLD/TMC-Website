@@ -6,7 +6,7 @@ import Link from "next/link";
 import { authenticate } from "@/app/lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
 
-export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'}) {
+export default function LoginForm() {
     const [state, formAction] = useFormState(authenticate, undefined);
     const { pending } = useFormStatus();
 
@@ -15,7 +15,7 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
             <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black
                 Mobile-S:text-[30px]
                 Tablet:text-[40px]`}>
-                {loginType} - Sign In <br></br>
+                Sign In <br></br>
 
                 <div className={`h-[15%]`}></div>
 
@@ -87,8 +87,8 @@ export default function LoginForm({loginType}: {loginType: 'Team' | 'Individual'
                         Mobile-L:text-[20px]
                         Tablet:relative`}
                     >
-                        Don't have an account? ​
-                        <Link key={`${loginType} Sign Up`} href={`/dashboard/sign-up-${loginType.toLowerCase()}`} className={`text-blue-400 
+                        Don't have an account?
+                        <Link key={`Sign Up`} href={`/dashboard/sign-up`} className={`text-blue-400 
                             min-[585px]:relative min-[585px]:top-[0%]
                             Mobile-S:absolute Mobile-S:top-[60%]
                             Mobile-L:top-[40%] min-[426px]:top-[60%]

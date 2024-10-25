@@ -12,7 +12,11 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user;
             const isOnCompPages = nextUrl.pathname.startsWith('/competition');
 
-            //TODO: make it so that you can click on team login and individual login to log out
+            if (isOnCompPages && !isLoggedIn) {
+                return Response.redirect(new URL('/dashboard/login', nextUrl));
+            }
+
+            // TODO: make it so that you can click on team login and individual login to log out
             if (!wasLoggedIn && isLoggedIn && (nextUrl.pathname.includes('login') || nextUrl.pathname.includes('sign-up'))) {
                 wasLoggedIn = isLoggedIn;
                 return Response.redirect(new URL('/competition', nextUrl));

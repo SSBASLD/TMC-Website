@@ -4,17 +4,24 @@ import { inter } from "./fonts";
 import Link from "next/link";
 import { createUser } from "../lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
+import { redirect } from "next/navigation";
 
-export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individual'}) {
+export default function SignUpForm() {
     const [state, formAction] = useFormState(createUser, undefined);
 
+    if (state == "Success") {
+        redirect('/dashboard/login');
+    }
+
     return (
-        <form action={formAction} className="h-[100%]">
+        <form action={async (formData) => {
+            await formAction(formData);
+        }} className="h-[100%]">
             <div className={`bg-auto bg-slate-100 w-[100%] h-[100%] p-[3%] rounded-md shadow-md ${inter.className} text-black text-center
                 Mobile-S:text-[30px]
                 Tablet:text-[40px]`}>
 
-                Create a {signUpType} Account<br></br>
+                Create a Account<br></br>
 
                 <div className={`h-[2%]`}></div>
 
@@ -57,7 +64,7 @@ export default function SignUpForm({signUpType}: {signUpType: 'Team' | 'Individu
                 <div className={`h-[10%] text-[15px] text-red-500`}>{state}</div>
 
                 <p className={`text-[20px]`}>
-                    Already have an account? <Link key={`${signUpType} Log In`} href={`${signUpType.toLowerCase()}-login`} className={`text-blue-400`}>
+                    Already have an account? <Link key={`Log In`} href={`login`} className={`text-blue-400`}>
                         Log in!
                     </Link>
                 </p>
