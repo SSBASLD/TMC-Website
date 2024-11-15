@@ -1,5 +1,5 @@
 import { lusitana } from "@/app/ui/fonts";
-import { signOutAsync } from "../lib/actions";
+import { signOutAsync } from "../../lib/actions";
 import { useEffect, useRef } from "react";
 
 export default function Home() {
