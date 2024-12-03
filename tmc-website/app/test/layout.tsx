@@ -50,7 +50,7 @@ export default function Layout({
                                     </Tooltip>
                                 </div>
                             </ClickAwayListener> */}
-                            /* Add tooltip to bring up the problem selection */
+                            {/* Add tooltip to bring up the problem selection */}
 
                             <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }}>
                                 Problem 1 of 81
