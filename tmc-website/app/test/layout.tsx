@@ -1,22 +1,28 @@
 'use client'
 
 import { inter } from "@/app/ui/fonts";
-import { Card, CardActions, Button, Box, ThemeProvider, CssBaseline } from "@mui/material";
+import { Card, CardActions, Button, Box, ThemeProvider, CssBaseline, Tooltip } from "@mui/material";
 import { blue, red, yellow } from "@mui/material/colors";
 import { theme } from "@/theme.config";
-import { addStyles, EditableMathField } from 'react-mathquill'
 import { useState } from "react";
 import { ClassNames } from "@emotion/react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 export default function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    addStyles();
-    const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2');
+    const [open, setOpen] = useState(false);
 
+    const handleTooltipClose = () => {
+        setOpen(false);
+    };
+
+    const handleTooltipOpen = () => {
+        setOpen(true);
+    };
 
     return (
         <div className={`overflow-hidden overflow-y-hidden w-screen h-screen p-0 m-0`}>
@@ -31,7 +37,7 @@ export default function Layout({
                     <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>
 
                         <Box sx={{ width: '100%', height: '7vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute' }}>
-                            {/* <ClickAwayListener onClickAway={handleTooltipClose}>
+                            <ClickAwayListener onClickAway={handleTooltipClose}>
                                 <div>
                                     <Tooltip
                                         onClose={handleTooltipClose}
@@ -49,8 +55,7 @@ export default function Layout({
                                         <Button onClick={handleTooltipOpen}>Click</Button>
                                     </Tooltip>
                                 </div>
-                            </ClickAwayListener> */}
-                            {/* Add tooltip to bring up the problem selection */}
+                            </ClickAwayListener>
 
                             <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }}>
                                 Problem 1 of 81
