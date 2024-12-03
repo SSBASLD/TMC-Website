@@ -52,15 +52,13 @@ export default function Layout({
                                             },
                                         }}
                                     >
-                                        <Button onClick={handleTooltipOpen}>Click</Button>
+                                        <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }}>
+                                            Problem 1 of 81
+                                            <ExpandMoreIcon></ExpandMoreIcon>
+                                        </Button>
                                     </Tooltip>
                                 </div>
                             </ClickAwayListener>
-
-                            <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }}>
-                                Problem 1 of 81
-                                <ExpandMoreIcon></ExpandMoreIcon>
-                            </Button>
                         </Box>
 
                         <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', userSelect: 'none', paddingX: '5%', gap: '15px' }}>
