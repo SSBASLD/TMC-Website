@@ -20,6 +20,10 @@ export default function Layout({
         setOpen(false);
     };
 
+    const handleToolTipToggle = () => {
+        setOpen(!open);
+    }
+
     const handleTooltipOpen = () => {
         setOpen(true);
     };
@@ -46,13 +50,14 @@ export default function Layout({
                                         disableHoverListener
                                         disableTouchListener
                                         title="Add"
+                                        arrow
                                         slotProps={{
                                             popper: {
                                                 disablePortal: true,
                                             },
                                         }}
                                     >
-                                        <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }}>
+                                        <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%' }} onClick={handleToolTipToggle}>
                                             Problem 1 of 81
                                             <ExpandMoreIcon></ExpandMoreIcon>
                                         </Button>
