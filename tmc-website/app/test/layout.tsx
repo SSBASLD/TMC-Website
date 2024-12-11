@@ -1,13 +1,24 @@
 'use client'
 
 import { inter } from "@/app/ui/fonts";
-import { Card, CardActions, Button, Box, ThemeProvider, CssBaseline, Tooltip } from "@mui/material";
-import { blue, red, yellow } from "@mui/material/colors";
+import { Card, CardActions, Button, Box, ThemeProvider, CssBaseline, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
+import { blue, lightBlue, red, yellow } from "@mui/material/colors";
 import { theme } from "@/theme.config";
 import { useState } from "react";
 import { ClassNames } from "@emotion/react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { styled } from '@mui/material/styles';
+
+const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+))({
+    [`& .${tooltipClasses.tooltip}`]: {
+        width: 500,
+        height: 500,
+        color: lightBlue,
+    },
+});
 
 export default function Layout({
     children,
@@ -49,9 +60,23 @@ export default function Layout({
                                         disableFocusListener
                                         disableHoverListener
                                         disableTouchListener
-                                        title="Add"
+                                        title=" "
                                         arrow
                                         slotProps={{
+                                            tooltip: {
+                                                sx: {
+                                                    maxWidth: 500,
+                                                    width: '80vw',
+                                                    height: 500,
+                                                    bgcolor: 'white',
+                                                    boxShadow: 5,
+                                                    color: 'black',
+                                                    '& .MuiTooltip-arrow': {
+                                                        color: 'white',
+                                                        fontSize: 30,
+                                                    }
+                                                }
+                                            },
                                             popper: {
                                                 disablePortal: true,
                                             },
