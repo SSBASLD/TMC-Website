@@ -9,7 +9,7 @@ import { signOut } from "@/auth";
 export default function DefaultLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }>) {
     return (
         <div className={`${inter.className} bg-auto bg-slate-50 w-screen h-screen min-h-[950px] overflow-x-hidden`}>
