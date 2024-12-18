@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Typography } from "@mui/material";
 import { useSearchParams, usePathname, useRouter, } from "next/navigation";
 
@@ -6,7 +8,7 @@ export default function IndividualProblem({ number }: { number: string }) {
     const pathname = usePathname();
     const { replace } = useRouter();
 
-    function handleSearch(term: string) {
+    async function handleSearch(term: string) {
         const params = new URLSearchParams(searchParams);
         if (term) {
             params.set('problemNumber', term);
