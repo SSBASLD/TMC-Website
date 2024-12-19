@@ -1,6 +1,3 @@
-'use server'
-
-import { ThemeProvider } from "@mui/material";
 import { theme } from "@/theme.config";
 
 export default async function Layout({
@@ -8,7 +5,6 @@ export default async function Layout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
     return (
         <div className={`overflow-hidden overflow-y-hidden w-screen h-screen p-0 m-0`}>
             {children}

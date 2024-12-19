@@ -8,10 +8,10 @@ export default function IndividualProblem({ number }: { number: string }) {
     const pathname = usePathname();
     const { replace } = useRouter();
 
-    async function handleSearch(term: string) {
+    async function handleProblemChange(number: string) {
         const params = new URLSearchParams(searchParams);
-        if (term) {
-            params.set('problemNumber', term);
+        if (number) {
+            params.set('problemNumber', number);
         } else {
             params.delete('problemNumber');
         }
@@ -27,7 +27,7 @@ export default function IndividualProblem({ number }: { number: string }) {
             },
             { height: 'auto', aspectRatio: 1, border: "dashed", borderWidth: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }
         ]} onClick={() => {
-            handleSearch(number);
+            handleProblemChange(number);
         }}>
             <Typography align='center' sx={{ fontWeight: 'bold', fontSize: 20, pointerEvents: 'none' }} className={`select-none`}>{number}</Typography>
         </Box>
