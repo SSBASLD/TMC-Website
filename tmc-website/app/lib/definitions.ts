@@ -3,3 +3,11 @@ export type User = {
     email: string;
     password: string;
 };
+
+export type Test = {
+    testName: string;
+    problems: object[];
+    timeLimit: number;
+    endDate: string;
+    startDate: string;
+}

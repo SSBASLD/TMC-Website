@@ -1,8 +1,38 @@
+'use client'
+
 import { lusitana } from "@/app/ui/fonts";
 import { signOutAsync } from "../lib/actions";
 import { useEffect, useRef } from "react";
+import { Card, CardContent, Grid2, Typography } from "@mui/material";
+import { theme } from "@/theme.config";
+import { ThemeProvider } from "@emotion/react";
+import { fetchTests } from "@/app/lib/data";
 
-export default function Home() {
+const TestCard = () => {
+    let cards = [];
+    for (let i = 0; i < 10; i++) {
+        cards.push(
+            <ThemeProvider theme={theme}>
+                <Grid2 size={{ Tablet: 12 / 4, MobileM: 12 / 2, MobileS: 12 }} key={i}>
+                    <Card sx={{ border: 'solid', borderColor: 'black', maxWidth: '300px' }}>
+                        <CardContent>
+                            <Typography sx={{ fontSize: '20px', fontWeight: 'bold' }}>Individual Competition</Typography>
+                            <Typography sx={{ fontSize: '20px' }}>Time Limit: 40 minutes</Typography>
+                            <Typography sx={{ fontSize: '20px', fontStyle: 'italic' }}>Available between 3/14 and 3/21</Typography>
+                        </CardContent>
+                    </Card>
+                </Grid2>
+            </ThemeProvider>
+        );
+    }
+
+    return (
+        <>{cards}</>
+    );
+}
+
+export default async function Home() {
+    const tests = await fetchTests();
 
     return (
         <main className={`p-[2%] w-[100%] h-[100%] overflow-scroll`}>
@@ -14,13 +44,9 @@ export default function Home() {
                 Individual Competitions
             </p>
 
-            <div className={`flex flex-wrap gap-4`}>
-                <div className={`w-[300px] border-2 border-black p-[5px]`}>
-                    <p className={`text-[20px] text-black font-bold`}> Individual Competition </p>
-                    <p className={`text-[20px] text-black`}> Time Limit: 40 minutes </p>
-                    <p className={`text-[20px] text-black italic`}> Available between 3/14 and 3/21 </p>
-                </div>
-            </div>
+            <Grid2 container spacing={2}>
+                <TestCard></TestCard>
+            </Grid2>
         </main>
     );
 }

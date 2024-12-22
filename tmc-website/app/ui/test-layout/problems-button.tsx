@@ -1,7 +1,6 @@
 'use client'
 
-import { Button, Box, ThemeProvider, Tooltip, Grid2, } from "@mui/material";
-import { theme } from "@/theme.config";
+import { Button, Box, Tooltip, Grid2, } from "@mui/material";
 import { useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ClickAwayListener from '@mui/material/ClickAwayListener';

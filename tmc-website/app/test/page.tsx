@@ -5,6 +5,7 @@ import ProblemsButton from "@/app/ui/test-layout/problems-button";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "@/theme.config";
 import ChangeProblemButton from "@/app/ui/test-layout/change-problem-button";
+import Problem from "@/app/ui/test-layout/problem"
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import { useState } from "react";
@@ -13,7 +14,7 @@ import { useState } from "react";
 export default function Page({ searchParams }: { searchParams?: { problemNumber?: string } }) {
     let [text, setText] = useState('');
 
-    let problemNumber = searchParams?.problemNumber || '';
+    let problemNumber = searchParams?.problemNumber || '1';
 
     return (
         <ThemeProvider theme={theme}>
@@ -24,42 +25,7 @@ export default function Page({ searchParams }: { searchParams?: { problemNumber?
                 </Box>
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black' }}>
-                    <Box sx={{ height: '5vh', width: '80vw', maxWidth: '700px', backgroundColor: 'lightgray' }} className={`border-b-[0.5vh] border-black`}>
-                        <Box sx={{ height: '5vh', width: 'auto', aspectRatio: 1, backgroundColor: 'black', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            <Typography sx={{ fontSize: '2.5vh', color: 'white' }}>{problemNumber}</Typography>
-                        </Box>
-
-                        <Box sx={{ height: '3vh' }}></Box>
-
-                        <Box>
-                            <Typography>
-                                On a 4x4 grid, a “loop” is a closed path where each square is connected to
-                                exactly two adjacent squares, forming a continuous, non-branching, and
-                                self-contained circuit. The loop must stay within the grid and not cross
-                                itself. William Zhong must place one or more non-overlapping loops on the
-                                grid so that every square is part of exactly one loop. How many distinct
-                                ways can this be done, considering rotations and reflections as different
-                                configurations?
-                            </Typography>
-                        </Box>
-
-                        <Box sx={{ height: '3vh' }}></Box>
-
-                        <Box component='img' src='/test.png' sx={{ display: 'flex', justifySelf: 'center' }}></Box>
-
-                        <Box sx={{ height: '3vh' }}></Box>
-
-                        <TextField
-                            id='outlined-basic'
-                            label='Answer'
-                            variant='outlined'
-                            size='small'
-                            onChange={(event) => {
-                                setText(event.target.value);
-                            }}
-                            slotProps={{ htmlInput: { maxLength: 30 } }}
-                        />
-                    </Box>
+                    <Problem problemNumber={problemNumber} />
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>

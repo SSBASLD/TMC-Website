@@ -3,15 +3,18 @@ import Credentials from 'next-auth/providers/credentials';
 import { authConfig } from './auth.config';
 import { z } from 'zod';
 import { User } from './app/lib/definitions';
-import { client } from './app/modules/database';
+import { connectToDatabase } from './app/modules/database';
 import bcrypt from 'bcrypt';
 import { parse } from 'path';
 
-const database = client.connect();
 
 async function getUser(email: string): Promise<User | null> {
   try {
-    const user = (await database).db("TMC-Comp-Data").collection("Users").findOne<User>({ email: email });
+    const { client, db } = await connectToDatabase();
+
+    const Users = await db.collection("Users");
+    const user = Users.findOne({ email: email });
+
     return user;
   } catch (error) {
     console.error('Failed to fetch user:', error);

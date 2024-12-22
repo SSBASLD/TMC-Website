@@ -2,15 +2,13 @@
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
-import { client } from "@/app/modules/database";
+import { connectToDatabase } from "@/app/modules/database";
 import { User } from "@/app/lib/definitions";
 import bcrypt from 'bcrypt';
 import { signOut } from "@/auth";
 import { z } from 'zod';
 import { emit } from "process";
 import { redirect } from "next/navigation";
-
-const database = client.connect();
 
 export async function authenticate(
     prevState: string | undefined,
@@ -34,7 +32,9 @@ export async function authenticate(
 }
 
 export async function createUser(prevState: string | undefined, formData: FormData) {
-    const users = (await database).db("TMC-Comp-Data").collection("Users");
+    const { client, db } = await connectToDatabase();
+
+    const users = (await db).db("TMC-Comp-Data").collection("Users");
     let repeat = await users.findOne({ email: formData.get('email') });
     if (repeat != null) {
         return 'A user with that email already exists!';
