@@ -25,7 +25,7 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
                     <Typography sx={{ fontSize: '3vh', color: 'black' }}>{test.testName}</Typography>
                 </Box>
 
-                <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black' }}>
+                <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>
                     <Problem testID={test._id} problemNumber={problemNumber} problem={currentProblem} />
                 </Box>
 

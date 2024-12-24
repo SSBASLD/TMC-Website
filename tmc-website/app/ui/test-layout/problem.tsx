@@ -20,7 +20,7 @@ export default function Problem({ testID, problemNumber, problem }: { testID: st
 
                 <Box sx={{ height: '3vh' }}></Box>
 
-                <Box component='img' src={problem.picture ? `/${testID}/${problemNumber}.png` : ''} sx={{ display: 'flex', justifySelf: 'center' }}></Box>
+                {problem.picture ? <Box component='img' src={problem.picture ? `/${testID}/${problemNumber}.png` : ''} sx={{ display: 'flex', justifySelf: 'center' }} /> : ''}
 
                 <Box sx={{ height: '3vh' }}></Box>
 
@@ -31,6 +31,8 @@ export default function Problem({ testID, problemNumber, problem }: { testID: st
                     size='small'
                     slotProps={{ htmlInput: { maxLength: 30 } }}
                 />
+
+                <Box sx={{ height: '3vh' }}></Box>
             </Box>
         </>
     );
