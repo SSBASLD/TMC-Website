@@ -1,8 +1,12 @@
-import { ProblemType } from "@/app/lib/definitions";
-import { Box, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+'use client'
 
-export default function Problem({ testID, problemNumber, problem }: { testID: string, problemNumber: string, problem: ProblemType }) {
+import { ProblemType, Test } from "@/app/lib/definitions";
+import { Box, TextField, Typography } from "@mui/material";
+import { useDebouncedCallback } from 'use-debounce';
+import { upsertAnswers } from "@/app/lib/actions";
+import { auth } from "@/auth";
+
+export default async function Problem({ test, problemNumber, problem }: { test: Test, problemNumber: string, problem: ProblemType }) {
     return (
         <>
             <Box sx={{ height: '5vh', width: '80vw', maxWidth: '700px', backgroundColor: 'lightgray' }} className={`border-b-[0.5vh] border-black`}>
@@ -20,7 +24,7 @@ export default function Problem({ testID, problemNumber, problem }: { testID: st
 
                 <Box sx={{ height: '3vh' }}></Box>
 
-                {problem.picture ? <Box component='img' src={problem.picture ? `/${testID}/${problemNumber}.png` : ''} sx={{ display: 'flex', justifySelf: 'center' }} /> : ''}
+                {problem.picture ? <Box component='img' src={problem.picture ? `/${test._id}/${problemNumber}.png` : ''} sx={{ display: 'flex', justifySelf: 'center' }} /> : ''}
 
                 <Box sx={{ height: '3vh' }}></Box>
 

@@ -26,6 +26,7 @@
     "react-dom": "^18",
     "react-latex-next": "^3.0.0",
     "react-mathquill": "^1.0.3",
+    "use-debounce": "^10.0.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {

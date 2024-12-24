@@ -3,7 +3,7 @@
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { connectToDatabase } from "@/app/modules/database";
-import { User } from "@/app/lib/definitions";
+import { Test, User } from "@/app/lib/definitions";
 import bcrypt from 'bcrypt';
 import { signOut } from "@/auth";
 import { z } from 'zod';
@@ -65,6 +65,32 @@ export async function createUser(prevState: string | undefined, formData: FormDa
     } catch (error) {
         console.log(error);
         return 'Something went wrong! Try again';
+    }
+}
+
+export async function upsertAnswers(email: string, answer: string, test: Test) {
+    try {
+        const { client, db } = await connectToDatabase();
+        const Answers = await db.collection('Answers');
+
+        const existing = await Answers.findOne({ 'id': test._id, 'email': email });
+
+        if (!existing) {
+            let stringArray = [];
+            for (let i = 0; i < test.problems.length; i++) {
+                stringArray.push("No Answer");
+            }
+
+            await Answers.insertOne({
+                'id': test._id,
+                'answers': stringArray,
+                'email': email,
+            });
+        }
+
+        await Answers.updateOne({ 'id': test._id, 'email': email }, { "$set": { "answers.1.content": answer } });
+    } catch (error) {
+        console.error(error);
     }
 }
 

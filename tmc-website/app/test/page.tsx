@@ -26,7 +26,7 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
                 </Box>
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>
-                    <Problem testID={test._id} problemNumber={problemNumber} problem={currentProblem} />
+                    <Problem test={test} problemNumber={problemNumber} problem={currentProblem} />
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>
@@ -36,8 +36,8 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
 
                     <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', userSelect: 'none', paddingX: { 'MobileL': '20px', 'MobileS': '5px' }, gap: '15px' }}>
                         <Box sx={{ marginLeft: 'auto', display: 'flex', gap: { 'MobileL': '20px', 'MobileS': '5px' }, paddingBottom: 0.5 }}>
-                            <ChangeProblemButton title="Back" increment={-1} currentNumber={problemNumber} numberOfProblems={test.problems.length}></ChangeProblemButton>
-                            <ChangeProblemButton title="Next" increment={1} currentNumber={problemNumber} numberOfProblems={test.problems.length}></ChangeProblemButton>
+                            <ChangeProblemButton title="Back" increment={-1} currentNumber={problemNumber} numberOfProblems={test.problems.length} />
+                            <ChangeProblemButton title={problemNumber == test.problems.length ? "Submit" : "Next"} increment={1} currentNumber={problemNumber} numberOfProblems={test.problems.length} />
                         </Box>
                     </Box>
                 </Box>

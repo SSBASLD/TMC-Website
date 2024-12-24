@@ -5,23 +5,24 @@ import { useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import IndividualProblem from "@/app/ui/test-layout/individual-problem";
+import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 
-const QuestionBox = ({ boxNumber }: { boxNumber: string }) => {
+const QuestionBox = ({ boxNumber, problemNumber }: { boxNumber: string, problemNumber?: string }) => {
     return (
         <Grid2 size={{ Tablet: 12 / 9, MobileS: 12 / 6 }} key={boxNumber}>
-            <IndividualProblem number={boxNumber}></IndividualProblem>
+            <IndividualProblem number={boxNumber} problemNumber={problemNumber}></IndividualProblem>
         </Grid2 >
     );
 }
 
-const BoxGrid = ({ amount }: { amount: number }) => {
+const BoxGrid = ({ amount, problemNumber }: { amount: number, problemNumber?: string }) => {
     let boxes = [];
     for (let i = 1; i <= amount; i++) {
-        boxes.push(<QuestionBox boxNumber={i.toString()}></QuestionBox>);
+        boxes.push(<QuestionBox boxNumber={i.toString()} problemNumber={problemNumber}></QuestionBox>);
     }
 
     return (
-        <Grid2 container spacing={{ Tablet: 2, MobileS: 1 }}>
+        <Grid2 container spacing={{ Tablet: 2, MobileS: 1 }} >
             {boxes}
         </Grid2>
     )
@@ -49,8 +50,8 @@ export default function ProblemsButton({ problemNumber, amount }: { problemNumbe
                     disableHoverListener
                     disableTouchListener
                     title={
-                        <Box sx={{ padding: 1, overflowY: 'scroll', overflowX: 'none', height: '100%' }}>
-                            <BoxGrid amount={amount}></BoxGrid>
+                        <Box sx={{ padding: 2, overflowY: 'scroll', overflowX: 'none', height: '100%' }}>
+                            <BoxGrid amount={amount} problemNumber={problemNumber}></BoxGrid>
                         </Box>
                     }
                     arrow
