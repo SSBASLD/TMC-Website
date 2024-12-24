@@ -27,9 +27,7 @@ const BoxGrid = ({ amount }: { amount: number }) => {
     )
 }
 
-export default function ProblemsButton({ problemNumber }: { problemNumber?: string }) {
-    const amountOfProblems = 100;
-
+export default function ProblemsButton({ problemNumber, amount }: { problemNumber?: string, amount: number }) {
     const [open, setOpen] = useState(false);
 
     const handleTooltipClose = () => {
@@ -52,7 +50,7 @@ export default function ProblemsButton({ problemNumber }: { problemNumber?: stri
                     disableTouchListener
                     title={
                         <Box sx={{ padding: 1, overflowY: 'scroll', overflowX: 'none', height: '100%' }}>
-                            <BoxGrid amount={amountOfProblems}></BoxGrid>
+                            <BoxGrid amount={amount}></BoxGrid>
                         </Box>
                     }
                     arrow
@@ -77,7 +75,7 @@ export default function ProblemsButton({ problemNumber }: { problemNumber?: stri
                     }}
                 >
                     <Button variant="contained" sx={{ backgroundColor: 'black', gap: '5px', maxHeight: '70%', fontSize: { MobileM: '15px', MobileS: '10px' } }} onClick={handleToolTipToggle}>
-                        Problem {problemNumber ? problemNumber : 1} of {amountOfProblems}
+                        Problem {problemNumber ? problemNumber : 1} of {amount}
                         <ExpandMoreIcon sx={{ transform: open ? 'rotate(0deg)' : 'rotate(180deg)' }}></ExpandMoreIcon>
                     </Button>
                 </Tooltip>

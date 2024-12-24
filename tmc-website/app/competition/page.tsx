@@ -1,5 +1,3 @@
-'use client'
-
 import { lusitana } from "@/app/ui/fonts";
 import { signOutAsync } from "../lib/actions";
 import { useEffect, useRef } from "react";
@@ -7,31 +5,23 @@ import { Card, CardContent, Grid2, Typography } from "@mui/material";
 import { theme } from "@/theme.config";
 import { ThemeProvider } from "@emotion/react";
 import { fetchTests } from "@/app/lib/data";
-
-const TestCard = () => {
-    let cards = [];
-    for (let i = 0; i < 10; i++) {
-        cards.push(
-            <Grid2 size={{ Tablet: 12 / 4, MobileM: 12 / 2, MobileS: 12 }} key={i}>
-                <Card sx={{ border: 'solid', borderColor: 'black', maxWidth: '300px' }}>
-                    <CardContent>
-                        <Typography sx={{ fontSize: '20px', fontWeight: 'bold' }}>Individual Competition</Typography>
-                        <Typography sx={{ fontSize: '20px' }}>Time Limit: 40 minutes</Typography>
-                        <Typography sx={{ fontSize: '20px', fontStyle: 'italic' }}>Available between 3/14 and 3/21</Typography>
-                    </CardContent>
-                </Card>
-            </Grid2>
-        );
-    }
-
-    return (
-        <ThemeProvider theme={theme}>{cards}</ThemeProvider>
-    );
-}
+import TestCards from "@/app/ui/default-layout/test-cards";
+import { Test } from "@/app/lib/definitions"
 
 export default async function Home() {
-
     let tests = await fetchTests();
+    tests = tests.map((e: Test) => {
+        return {
+            _id: e._id.toString(),
+            problems: e.problems,
+            testName: e.testName,
+            timeLimit: e.testName,
+            endDate: e.endDate,
+            startDate: e.startDate,
+        };
+    });
+
+    const testCards = (<TestCards tests={tests}></TestCards>);
 
     return (
         <main className={`p-[2%] w-[100%] h-[100%] overflow-scroll`}>
@@ -44,7 +34,7 @@ export default async function Home() {
             </p>
 
             <Grid2 container spacing={2}>
-                <TestCard></TestCard>
+                {testCards}
             </Grid2>
         </main>
     );

@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { useSearchParams, usePathname, useRouter, } from "next/navigation";
 
 
-export default function ChangeProblemButton({ title, increment, currentNumber }: { title: string, increment: number, currentNumber: string }) {
+export default function ChangeProblemButton({ title, increment, currentNumber, numberOfProblems }: { title: string, increment: number, currentNumber: string, numberOfProblems: number }) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -22,6 +22,10 @@ export default function ChangeProblemButton({ title, increment, currentNumber }:
     return (
         <Button
             onClick={() => {
+                if (Number(currentNumber) + increment <= 0 || Number(currentNumber) + increment > numberOfProblems) {
+                    return;
+                }
+
                 handleProblemChange((Number(currentNumber) + increment).toString());
             }}
             variant='contained'

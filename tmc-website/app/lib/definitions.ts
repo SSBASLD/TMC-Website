@@ -5,9 +5,15 @@ export type User = {
 };
 
 export type Test = {
+    _id: string;
     testName: string;
-    problems: object[];
+    problems: ProblemType[];
     timeLimit: number;
     endDate: string;
     startDate: string;
+}
+
+export type ProblemType = {
+    problem: string;
+    picture: boolean;
 }
