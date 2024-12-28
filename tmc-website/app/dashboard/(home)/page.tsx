@@ -1,9 +1,7 @@
 import { lusitana } from "@/app/ui/fonts";
 import { signOutAsync } from "../../lib/actions";
-import { useEffect, useRef } from "react";
 
-export default function Home() {
-
+export default async function Home() {
   return (
     <main className={`p-[2%] w-[100%] h-[100%]`}>
       <p className={`top-[8%] left-[10%] right-[10%] flex items-center justify-left ${lusitana.className} text-black

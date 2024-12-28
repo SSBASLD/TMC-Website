@@ -10,10 +10,9 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import { fetchTestById } from "@/app/lib/data";
 
-
 export default async function Page({ searchParams }: { searchParams?: { problemNumber?: string, testID?: string } }) {
-    let testID = searchParams?.testID || '';
-    let problemNumber = searchParams?.problemNumber || '1';
+    let testID = await searchParams?.testID || '';
+    let problemNumber = await searchParams?.problemNumber || '1';
 
     const test = await fetchTestById(testID);
     const currentProblem = test.problems[Number(problemNumber) - 1];

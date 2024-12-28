@@ -13,7 +13,7 @@ import { signOutAsync } from "@/app/lib/actions";
 //Shouldn't be that much so no need to store on DB
 const links = [
     { name: 'Home', href: '/dashboard' },
-    { name: 'Team Contest', href: '/competition' },
+    { name: 'Team Contest', href: '/dashboard/join-team' },
     { name: 'Individual Contest', href: '/competition' },
     { name: 'Contest Information', href: '/dashboard/contest-information' },
 ];

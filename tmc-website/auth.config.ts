@@ -8,8 +8,17 @@ export const authConfig = {
         signIn: '/individual-login',
     },
     callbacks: {
+        session: ({ session, token }) => {
+            console.log("Session Callback", { session, token });
+            return session;
+        },
+        jwt: ({ token, user }) => {
+            return token;
+        },
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
+            console.log(auth);
+
             const isOnCompPages = nextUrl.pathname.startsWith('/competition');
 
             if (isOnCompPages && !isLoggedIn) {

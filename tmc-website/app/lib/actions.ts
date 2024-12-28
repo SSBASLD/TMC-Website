@@ -34,7 +34,7 @@ export async function authenticate(
 export async function createUser(prevState: string | undefined, formData: FormData) {
     const { client, db } = await connectToDatabase();
 
-    const users = (await db).db("TMC-Comp-Data").collection("Users");
+    const users = (await db).collection("Users");
     let repeat = await users.findOne({ email: formData.get('email') });
     if (repeat != null) {
         return 'A user with that email already exists!';
@@ -59,6 +59,38 @@ export async function createUser(prevState: string | undefined, formData: FormDa
             name: formData.get('username'),
             email: formData.get('email'),
             password: hashedPassword
+        });
+
+        return "Success";
+    } catch (error) {
+        console.log(error);
+        return 'Something went wrong! Try again';
+    }
+}
+
+export async function createTeam(prevState: string | undefined, formData: FormData) {
+    const { client, db } = await connectToDatabase();
+
+    const Teams = (await db).collection('Teams');
+    let repeat = await Teams.findOne({ email: formData.get('email') });
+
+    if (repeat != null) {
+        return 'A team with that email already exists!';
+    }
+
+    const emailParse = z.string().email().safeParse(formData.get('email'));
+    if (!emailParse.success) {
+        return 'You must enter a valid email address!';
+    }
+
+    if (formData.get('name') == null) {
+        return 'You must enter some sort of team name!'
+    }
+
+    try {
+        await Teams.insertOne({
+            name: formData.get('name'),
+            email: formData.get('email'),
         });
 
         return "Success";
