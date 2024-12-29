@@ -42,7 +42,6 @@ export default function Problem({ test, problemNumber, problem }: { test: Test, 
                     slotProps={{ htmlInput: { maxLength: 30 } }}
                     onChange={(e) => {
                         setAnswer(e.target.value);
-                        console.log(e.target.value);
                     }}
                 />
 
@@ -56,9 +55,6 @@ export default function Problem({ test, problemNumber, problem }: { test: Test, 
                 </input>
 
                 <Box sx={{ height: '3vh' }}></Box>
-
-                <Button variant='outlined' type='submit'>Submit</Button>
-
             </Box>
         </>
     );
