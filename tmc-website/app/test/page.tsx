@@ -11,10 +11,16 @@ import Latex from 'react-latex-next';
 import { fetchTestById } from "@/app/lib/data";
 
 export default async function Page({ searchParams }: { searchParams?: { problemNumber?: string, testID?: string } }) {
-    let testID = await searchParams?.testID || '';
-    let problemNumber = await searchParams?.problemNumber || '1';
+    let resolvedSearchParams = await searchParams;
+
+    let testID = resolvedSearchParams?.testID || '';
+    let problemNumber = resolvedSearchParams?.problemNumber || '1';
 
     const test = await fetchTestById(testID);
+    if (test) {
+        test._id = test._id.toString();
+    }
+
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
     return (

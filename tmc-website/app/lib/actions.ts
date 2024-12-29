@@ -100,27 +100,30 @@ export async function createTeam(prevState: string | undefined, formData: FormDa
     }
 }
 
-export async function upsertAnswers(email: string, answer: string, test: Test) {
+export async function upsertAnswers(prevState: string | undefined, formData: FormData) {
     try {
-        const { client, db } = await connectToDatabase();
-        const Answers = await db.collection('Answers');
+        console.log(formData);
+        return "working???";
 
-        const existing = await Answers.findOne({ 'id': test._id, 'email': email });
+        // const { client, db } = await connectToDatabase();
+        // const Answers = await db.collection('Answers');
 
-        if (!existing) {
-            let stringArray = [];
-            for (let i = 0; i < test.problems.length; i++) {
-                stringArray.push("No Answer");
-            }
+        // const existing = await Answers.findOne({ 'id': test._id, 'email': email });
 
-            await Answers.insertOne({
-                'id': test._id,
-                'answers': stringArray,
-                'email': email,
-            });
-        }
+        // if (!existing) {
+        //     let stringArray = [];
+        //     for (let i = 0; i < test.problems.length; i++) {
+        //         stringArray.push("No Answer");
+        //     }
 
-        await Answers.updateOne({ 'id': test._id, 'email': email }, { "$set": { "answers.1.content": answer } });
+        //     await Answers.insertOne({
+        //         'id': test._id,
+        //         'answers': stringArray,
+        //         'email': email,
+        //     });
+        // }
+
+        // await Answers.updateOne({ 'id': test._id, 'email': email }, { "$set": { "answers.1.content": answer } });
     } catch (error) {
         console.error(error);
     }

@@ -9,7 +9,6 @@ export const authConfig = {
     },
     callbacks: {
         session: ({ session, token }) => {
-            console.log("Session Callback", { session, token });
             return session;
         },
         jwt: ({ token, user }) => {
