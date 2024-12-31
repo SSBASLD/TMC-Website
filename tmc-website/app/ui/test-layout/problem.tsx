@@ -6,10 +6,41 @@ import { useDebouncedCallback } from 'use-debounce';
 import { upsertAnswers } from "@/app/lib/actions";
 import { auth } from "@/auth";
 import { useActionState, useState } from "react";
+import { useSearchParams, usePathname, useRouter, } from "next/navigation";
+import zIndex from "@mui/material/styles/zIndex";
 
-export default function Problem({ test, problemNumber, problem }: { test: Test, problemNumber: string, problem: ProblemType }) {
+let formerNumber = 0;
+
+export default function Problem({ test, problemNumber, problem, userEmail, currentAnswer }: { test: Test, problemNumber: string, problem: ProblemType, userEmail: string, currentAnswer: string }) {
     const [state, formAction] = useActionState(upsertAnswers, undefined);
-    const [answer, setAnswer] = useState('');
+    const [answer, setAnswer] = useState(currentAnswer);
+
+    //I feel like there's a better way to do this but I can't think of it and I'm tired of working on it
+    if (formerNumber != Number(problemNumber)) {
+        formerNumber = Number(problemNumber);
+        setAnswer(currentAnswer);
+    }
+
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+
+    console.log(currentAnswer + " Saved Answer");
+    console.log(answer + " Current Answer");
+
+    async function handleProblemChange(number: string, increment: number) {
+        if (Number(number) + increment <= 0 || Number(number) + increment > test.problems.length) {
+            return;
+        }
+
+        const params = new URLSearchParams(searchParams);
+        if (number) {
+            params.set('problemNumber', (Number(number) + increment).toString());
+        } else {
+            params.delete('problemNumber');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
 
     return (
         <>
@@ -43,6 +74,7 @@ export default function Problem({ test, problemNumber, problem }: { test: Test, 
                     onChange={(e) => {
                         setAnswer(e.target.value);
                     }}
+                    defaultValue={currentAnswer}
                 />
 
                 {/* This is a really stupid way to handle FormData being passed to the form but im too lazy to change it */}
@@ -51,11 +83,62 @@ export default function Problem({ test, problemNumber, problem }: { test: Test, 
                     id="answer"
                     name="answer"
                     value={answer}
-                >
-                </input>
+                    defaultValue={currentAnswer}
+                />
 
-                <Box sx={{ height: '3vh' }}></Box>
-            </Box>
+                <input
+                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    id="numProblems"
+                    name="numProblems"
+                    defaultValue={test.problems.length}
+                />
+
+                <input
+                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    id="testID"
+                    name="testID"
+                    defaultValue={test._id}
+                />
+
+                <input
+                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    id="email"
+                    name="email"
+                    defaultValue={userEmail}
+                />
+
+                <input
+                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    id="currentProblem"
+                    name="currentProblem"
+                    defaultValue={problemNumber}
+                />
+
+                <Box sx={{ width: '100%', height: '8vh', left: '0%', bottom: '0vh', position: "absolute", display: 'flex', alignItems: 'center', justifyContent: 'center', paddingX: { 'MobileL': '20px', 'MobileS': '5px' }, gap: '15px' }}>
+                    <Box sx={{ marginLeft: 'auto', display: 'flex', gap: { 'MobileL': '20px', 'MobileS': '5px' }, paddingBottom: 0.5, zIndex: 1600 }}>
+                        <Button
+                            onClick={() => {
+                                handleProblemChange(problemNumber.toString(), -1);
+                            }}
+                            variant='contained'
+                            sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
+                            type='submit'
+                        >
+                            Back
+                        </Button>
+                        <Button
+                            onClick={() => {
+                                handleProblemChange(problemNumber.toString(), 1);
+                            }}
+                            variant='contained'
+                            sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
+                            type='submit'
+                        >
+                            Next
+                        </Button>
+                    </Box>
+                </Box>
+            </Box >
         </>
     );
 }

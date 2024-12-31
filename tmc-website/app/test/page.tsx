@@ -8,9 +8,15 @@ import ChangeProblemButton from "@/app/ui/test-layout/change-problem-button";
 import Problem from "@/app/ui/test-layout/problem"
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
-import { fetchTestById } from "@/app/lib/data";
+import { fetchAnswers, fetchTestById } from "@/app/lib/data";
+import { auth } from "@/auth";
 
 export default async function Page({ searchParams }: { searchParams?: { problemNumber?: string, testID?: string } }) {
+    const session = await auth();
+    const user = session?.user;
+
+    const email = user?.email ? user?.email : '';
+
     let resolvedSearchParams = await searchParams;
 
     let testID = resolvedSearchParams?.testID || '';
@@ -20,6 +26,8 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
     if (test) {
         test._id = test._id.toString();
     }
+
+    const answer = await fetchAnswers(testID, email, Number(problemNumber) - 1);
 
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
@@ -31,19 +39,12 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
                 </Box>
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>
-                    <Problem test={test} problemNumber={problemNumber} problem={currentProblem} />
+                    <Problem test={test} problemNumber={problemNumber} problem={currentProblem} userEmail={email} currentAnswer={answer} />
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>
                     <Box sx={{ width: '100%', height: '7vh', display: 'flex', justifyContent: { 'MobileS': 'left', 'Tablet': 'center' }, alignItems: 'center', position: 'absolute', padding: 1 }}>
                         <ProblemsButton problemNumber={problemNumber} amount={test.problems.length} />
-                    </Box>
-
-                    <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', userSelect: 'none', paddingX: { 'MobileL': '20px', 'MobileS': '5px' }, gap: '15px' }}>
-                        <Box sx={{ marginLeft: 'auto', display: 'flex', gap: { 'MobileL': '20px', 'MobileS': '5px' }, paddingBottom: 0.5 }}>
-                            <ChangeProblemButton title="Back" increment={-1} currentNumber={problemNumber} numberOfProblems={test.problems.length} />
-                            <ChangeProblemButton title={problemNumber == test.problems.length ? "Submit" : "Next"} increment={1} currentNumber={problemNumber} numberOfProblems={test.problems.length} />
-                        </Box>
                     </Box>
                 </Box>
             </Box>

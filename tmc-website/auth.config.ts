@@ -16,7 +16,6 @@ export const authConfig = {
         },
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
-            console.log(auth);
 
             const isOnCompPages = nextUrl.pathname.startsWith('/competition');
 

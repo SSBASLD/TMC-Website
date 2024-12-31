@@ -102,30 +102,38 @@ export async function createTeam(prevState: string | undefined, formData: FormDa
 
 export async function upsertAnswers(prevState: string | undefined, formData: FormData) {
     try {
-        console.log(formData);
-        return "working???";
+        const email = formData.get('email');
+        const numProblems = Number(formData.get('numProblems'));
+        const testID = formData.get('testID');
+        const answer = formData.get('answer');
+        const currentProblem = formData.get('currentProblem');
 
-        // const { client, db } = await connectToDatabase();
-        // const Answers = await db.collection('Answers');
+        const { client, db } = await connectToDatabase();
+        const Answers = await db.collection('Answers');
 
-        // const existing = await Answers.findOne({ 'id': test._id, 'email': email });
+        const existing = await Answers.findOne({ 'id': formData.get('testID'), 'email': email });
 
-        // if (!existing) {
-        //     let stringArray = [];
-        //     for (let i = 0; i < test.problems.length; i++) {
-        //         stringArray.push("No Answer");
-        //     }
+        if (!existing) {
+            let stringArray = [];
+            for (let i = 0; i < numProblems; i++) {
+                stringArray.push("");
+            }
 
-        //     await Answers.insertOne({
-        //         'id': test._id,
-        //         'answers': stringArray,
-        //         'email': email,
-        //     });
-        // }
+            await Answers.insertOne({
+                'id': testID,
+                'answers': stringArray,
+                'email': email,
+            });
+        }
 
-        // await Answers.updateOne({ 'id': test._id, 'email': email }, { "$set": { "answers.1.content": answer } });
+        await Answers.updateOne(
+            { 'id': testID, 'email': email },
+            { "$set": { [`answers.${Number(currentProblem) - 1}`]: answer } }
+        );
+        return 'Success';
     } catch (error) {
         console.error(error);
+        return 'An error has occured';
     }
 }
 
