@@ -9,6 +9,7 @@ import Problem from "@/app/ui/test-layout/problem"
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import { fetchTestById } from "@/app/lib/data";
+import { useEffect, useState } from "react";
 
 export default async function Page({ searchParams }: { searchParams?: { problemNumber?: string, testID?: string } }) {
     let resolvedSearchParams = await searchParams;
@@ -23,6 +24,30 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
 
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
+    const timer = () => {
+        const initialTimeInSeconds = 60 * 60; 
+        const [timeRemaining, setTimeRemaining] = useState(initialTimeInSeconds);
+        const [isActive, setIsActive] = useState(true);
+
+        useEffect(() => {
+            if (!isActive || timeRemaining === 0) return;
+
+            const interval = setInterval(() => {
+            setTimeRemaining(prevTime => prevTime - 1);
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }, [isActive, timeRemaining]);
+
+        const formatTime = (seconds: number) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+
+        // Add leading zero if seconds or minutes are less than 10
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+    }
+
     return (
         <>
             <Box sx={{ width: '100%', height: '100%' }}>
@@ -32,6 +57,7 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>
                     <Problem test={test} problemNumber={problemNumber} problem={currentProblem} />
+                    <h2>formatTime(remainingSeconds)</h2>
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>
