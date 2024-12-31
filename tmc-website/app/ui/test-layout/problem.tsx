@@ -8,6 +8,7 @@ import { auth } from "@/auth";
 import { useActionState, useState } from "react";
 import { useSearchParams, usePathname, useRouter, } from "next/navigation";
 import zIndex from "@mui/material/styles/zIndex";
+import ProblemsButton from "@/app/ui/test-layout/problems-button";
 
 let formerNumber = 0;
 
@@ -134,8 +135,12 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                             sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
                             type='submit'
                         >
-                            Next
+                            {test.problems.length == Number(problemNumber) ? "Submit" : "Next"}
                         </Button>
+                    </Box>
+
+                    <Box sx={{ width: '100%', height: '7vh', display: 'flex', justifyContent: { 'MobileS': 'left', 'Tablet': 'center' }, alignItems: 'center', position: 'absolute', padding: 1 }}>
+                        <ProblemsButton problemNumber={problemNumber} amount={test.problems.length} />
                     </Box>
                 </Box>
             </Box >

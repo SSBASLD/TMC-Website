@@ -24,11 +24,13 @@ export default function IndividualProblem({ number, problemNumber }: { number: s
             <Box
                 sx={[
                     { '&:hover': { backgroundColor: 'lightblue' } },
-                    { height: 'auto', aspectRatio: 1, border: "dashed", borderWidth: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }
+                    { height: '30px', aspectRatio: 1, border: "dashed", borderWidth: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }
                 ]}
                 onClick={() => {
                     handleProblemChange(number);
                 }}
+                component='button'
+                type='submit'
             >
                 {problemNumber == number ? <RoomOutlinedIcon sx={{ position: 'relative', top: '-20px', marginTop: '-1px' }} /> : ''}
                 <Typography align='center' sx={{ position: 'absolute', fontWeight: 'bold', fontSize: 20, pointerEvents: 'none' }} className={`select-none`}>{number}</Typography>

@@ -43,9 +43,6 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>
-                    <Box sx={{ width: '100%', height: '7vh', display: 'flex', justifyContent: { 'MobileS': 'left', 'Tablet': 'center' }, alignItems: 'center', position: 'absolute', padding: 1 }}>
-                        <ProblemsButton problemNumber={problemNumber} amount={test.problems.length} />
-                    </Box>
                 </Box>
             </Box>
         </>
