@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { authenticate } from "@/app/lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
 
 export default function LoginForm() {
-    const [state, formAction] = useFormState(authenticate, undefined);
+    const [state, formAction] = useActionState(authenticate, undefined);
     const { pending } = useFormStatus();
 
     return (

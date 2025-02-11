@@ -22,7 +22,7 @@ const BoxGrid = ({ amount, problemNumber }: { amount: number, problemNumber?: st
     }
 
     return (
-        <Grid2 container spacing={{ Tablet: 2, MobileS: 1 }} >
+        <Grid2 container spacing={{ Tablet: 2, MobileS: 1 }} key={1}>
             {boxes}
         </Grid2>
     )

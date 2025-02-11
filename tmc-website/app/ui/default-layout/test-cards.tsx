@@ -30,6 +30,7 @@ export default function TestCards({ tests }: { tests: Test[] }) {
                 timeLimit={tests[i].timeLimit}
                 startDate={tests[i].startDate}
                 endDate={tests[i].endDate}
+                key={tests[i]._id}
             />
         );
     }
