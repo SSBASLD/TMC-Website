@@ -107,6 +107,7 @@ export async function upsertAnswers(prevState: string | undefined, formData: For
         const testID = formData.get('testID');
         const answer = formData.get('answer');
         const currentProblem = formData.get('currentProblem');
+        const submitted = formData.get('submitted');
 
         const { client, db } = await connectToDatabase();
         const Answers = await db.collection('Answers');
@@ -123,12 +124,13 @@ export async function upsertAnswers(prevState: string | undefined, formData: For
                 'id': testID,
                 'answers': stringArray,
                 'email': email,
+                'finished': false,
             });
         }
 
         await Answers.updateOne(
             { 'id': testID, 'email': email },
-            { "$set": { [`answers.${Number(currentProblem) - 1}`]: answer } }
+            { "$set": { [`answers.${Number(currentProblem) - 1}`]: answer, 'finished': submitted } }
         );
         return 'Success';
     } catch (error) {
@@ -136,6 +138,7 @@ export async function upsertAnswers(prevState: string | undefined, formData: For
         return 'An error has occured';
     }
 }
+
 
 export async function signOutAsync() {
     await signOut();

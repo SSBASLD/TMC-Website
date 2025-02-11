@@ -26,9 +26,6 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
     const pathname = usePathname();
     const { replace } = useRouter();
 
-    console.log(currentAnswer + " Saved Answer");
-    console.log(answer + " Current Answer");
-
     async function handleProblemChange(number: string, increment: number) {
         if (Number(number) + increment <= 0 || Number(number) + increment > test.problems.length) {
             return;
@@ -84,7 +81,6 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                     id="answer"
                     name="answer"
                     value={answer}
-                    defaultValue={currentAnswer}
                 />
 
                 <input
@@ -113,6 +109,13 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                     id="currentProblem"
                     name="currentProblem"
                     defaultValue={problemNumber}
+                />
+
+                <input
+                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
+                    id="submitted"
+                    name="submitted"
+                    defaultValue={(test.problems.length == Number(problemNumber)).toString()}
                 />
 
                 <Box sx={{ width: '100%', height: '8vh', left: '0%', bottom: '0vh', position: "absolute", display: 'flex', alignItems: 'center', justifyContent: 'center', paddingX: { 'MobileL': '20px', 'MobileS': '5px' }, gap: '15px' }}>

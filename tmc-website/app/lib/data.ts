@@ -35,16 +35,14 @@ export async function fetchTestById(id: string) {
     }
 }
 
-export async function fetchAnswers(testID: string, email: string, problemNumber: number) {
+export async function fetchAnswers(testID: string, email: string) {
     try {
         const { client, db } = await connectToDatabase();
 
         const Answers = await db.collection('Answers');
         const answers = await Answers.findOne({ "id": testID, 'email': email });
 
-        const answer = answers.answers[problemNumber];
-
-        return answer;
+        return answers;
     } catch (error) {
         console.error('Database Error:', error);
         throw new Error('Failed to fetch answer with specified ID');

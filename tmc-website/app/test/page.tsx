@@ -27,7 +27,8 @@ export default async function Page({ searchParams }: { searchParams?: { problemN
         test._id = test._id.toString();
     }
 
-    const answer = await fetchAnswers(testID, email, Number(problemNumber) - 1);
+    const answers = await fetchAnswers(testID, email);
+    const answer = answers.answers[Number(problemNumber) - 1];
 
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
