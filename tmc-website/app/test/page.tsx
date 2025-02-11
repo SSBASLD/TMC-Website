@@ -11,7 +11,7 @@ import Latex from 'react-latex-next';
 import { fetchAnswers, fetchTestById } from "@/app/lib/data";
 import { auth } from "@/auth";
 
-export default async function Page({ searchParams }: { searchParams?: { problemNumber?: string, testID?: string } }) {
+export default async function Page({ searchParams }: { searchParams?: Promise<{ problemNumber?: string, testID?: string }> }) {
     const session = await auth();
     const user = session?.user;
 
