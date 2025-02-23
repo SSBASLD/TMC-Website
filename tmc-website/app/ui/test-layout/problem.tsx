@@ -5,7 +5,7 @@ import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { useDebouncedCallback } from 'use-debounce';
 import { upsertAnswers } from "@/app/lib/actions";
 import { auth } from "@/auth";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter, } from "next/navigation";
 import zIndex from "@mui/material/styles/zIndex";
 import ProblemsButton from "@/app/ui/test-layout/problems-button";
@@ -13,14 +13,21 @@ import ProblemsButton from "@/app/ui/test-layout/problems-button";
 let formerNumber = 0;
 
 export default function Problem({ test, problemNumber, problem, userEmail, currentAnswer }: { test: Test, problemNumber: string, problem: ProblemType, userEmail: string, currentAnswer: string }) {
-    const [state, formAction] = useActionState(upsertAnswers, undefined);
     const [answer, setAnswer] = useState(currentAnswer);
 
-    //I feel like there's a better way to do this but I can't think of it and I'm tired of working on it
-    if (formerNumber != Number(problemNumber)) {
-        formerNumber = Number(problemNumber);
-        setAnswer(currentAnswer);
-    }
+    useEffect(() => {
+        if (typeof window !== undefined && window.localStorage) {
+            let answers = window.localStorage.getItem(`${test._id}-answers`);
+            if (currentAnswer == undefined) {
+                setAnswer('');
+            } else {
+                let parsedAnswers = JSON.parse(answers || '{}');
+                setAnswer(parsedAnswers[Number(problemNumber) - 1]);
+            }
+        }
+
+        console.log(answer);
+    });
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -40,11 +47,28 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
         replace(`${pathname}?${params.toString()}`);
     }
 
+    function saveAnswer(value: string) {
+        if (typeof window !== undefined && window.localStorage) {
+            let currentAnswers = window.localStorage.getItem(`${test._id}-answers`);
+            if (currentAnswers == undefined) {
+                let answers = [];
+                for (let i = 0; i < test.problems.length; i++) {
+                    answers.push('');
+                }
+                window.localStorage.setItem(`${test._id}-answers`, JSON.stringify(answers));
+            } else {
+                let parsedAnswers = JSON.parse(currentAnswers);
+                parsedAnswers[Number(problemNumber) - 1] = value;
+                window.localStorage.setItem(`${test._id}-answers`, JSON.stringify(parsedAnswers));
+
+                console.log(window.localStorage.getItem(`${test._id}-answers`));
+            }
+        }
+    }
+
     return (
         <>
-            <Box component='form' action={async (formData) => {
-                await formAction(formData);
-            }} sx={{ height: '5vh', width: '80vw', maxWidth: '700px', backgroundColor: 'lightgray' }} className={`border-b-[0.5vh] border-black`}>
+            <Box component="form" sx={{ height: '5vh', width: '80vw', maxWidth: '700px', backgroundColor: 'lightgray' }} className={`border-b-[0.5vh] border-black`}>
                 <Box sx={{ height: '5vh', width: 'auto', aspectRatio: 1, backgroundColor: 'black', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography sx={{ fontSize: '2.5vh', color: 'white' }}>{problemNumber}</Typography>
                 </Box>
@@ -71,51 +95,35 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                     slotProps={{ htmlInput: { maxLength: 30 } }}
                     onChange={(e) => {
                         setAnswer(e.target.value);
+                        saveAnswer(e.target.value);
                     }}
-                    defaultValue={currentAnswer}
+                    value={answer}
                 />
+
 
                 {/* This is a really stupid way to handle FormData being passed to the form but im too lazy to change it */}
                 <input
                     className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="answer"
-                    name="answer"
-                    value={answer}
+                    id="answers"
+                    name="answers"
+                    value={typeof window !== undefined && window.localStorage ? window.localStorage.getItem(`${test._id}-answers`) || "" : ""}
+                    onChange={(e) => { }}
                 />
 
                 <input
                     className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="numProblems"
-                    name="numProblems"
-                    defaultValue={test.problems.length}
+                    id="test"
+                    name="test"
+                    value={JSON.stringify(test)}
+                    onChange={(e) => { }}
                 />
 
                 <input
                     className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="testID"
-                    name="testID"
-                    defaultValue={test._id}
-                />
-
-                <input
-                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="email"
-                    name="email"
-                    defaultValue={userEmail}
-                />
-
-                <input
-                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="currentProblem"
-                    name="currentProblem"
-                    defaultValue={problemNumber}
-                />
-
-                <input
-                    className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="submitted"
-                    name="submitted"
-                    defaultValue={(test.problems.length == Number(problemNumber)).toString()}
+                    id="userEmail"
+                    name="userEmail"
+                    value={userEmail}
+                    onChange={(e) => { }}
                 />
 
                 <Box sx={{ width: '100%', height: '8vh', left: '0%', bottom: '0vh', position: "absolute", display: 'flex', alignItems: 'center', justifyContent: 'center', paddingX: { 'MobileL': '20px', 'MobileS': '5px' }, gap: '15px' }}>
@@ -123,20 +131,28 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                         <Button
                             onClick={() => {
                                 handleProblemChange(problemNumber.toString(), -1);
+                                saveAnswer(answer);
                             }}
                             variant='contained'
                             sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
-                            type='submit'
                         >
                             Back
                         </Button>
                         <Button
                             onClick={() => {
                                 handleProblemChange(problemNumber.toString(), 1);
+                                saveAnswer(answer);
+
+                                if (test.problems.length == Number(problemNumber)) {
+                                    let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-answers`) || "") : [""];
+
+                                    upsertAnswers(answers, userEmail, test);
+                                    replace("/competition");
+                                }
                             }}
                             variant='contained'
                             sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
-                            type='submit'
+                            type={test.problems.length == Number(problemNumber) ? "submit" : "button"}
                         >
                             {test.problems.length == Number(problemNumber) ? "Submit" : "Next"}
                         </Button>

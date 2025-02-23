@@ -1,5 +1,6 @@
 import next from 'next';
 import type { NextAuthConfig } from 'next-auth';
+import { fetchAnswers, fetchTestById } from '@/app/lib/data';
 
 var wasLoggedIn = false;
 

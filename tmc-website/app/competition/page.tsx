@@ -31,7 +31,7 @@ export default async function Home() {
     }
 
     tests = tests.filter((test: Test, index: number) => {
-        return answers[index].finished != 'true';
+        return answers[index].finished != true;
     });
 
     const testCards = (<TestCards tests={tests}></TestCards>);

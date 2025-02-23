@@ -40,7 +40,7 @@ export async function fetchAnswers(testID: string, email: string) {
         const { client, db } = await connectToDatabase();
 
         const Answers = await db.collection('Answers');
-        const answers = await Answers.findOne({ "id": testID, 'email': email });
+        const answers = await Answers.findOne({ "testID": testID, 'userEmail': email });
 
         return answers;
     } catch (error) {

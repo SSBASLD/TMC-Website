@@ -100,37 +100,50 @@ export async function createTeam(prevState: string | undefined, formData: FormDa
     }
 }
 
-export async function upsertAnswers(prevState: string | undefined, formData: FormData) {
-    try {
-        const email = formData.get('email');
-        const numProblems = Number(formData.get('numProblems'));
-        const testID = formData.get('testID');
-        const answer = formData.get('answer');
-        const currentProblem = formData.get('currentProblem');
-        const submitted = formData.get('submitted');
+// export async function upsertAnswers(prevState: string | undefined, formData: FormData) {
+//     try {
+//         const answers = JSON.parse(formData.get("answers")?.toString() || "{}");
+//         const test = JSON.parse(formData.get("test")?.toString() || "{}");
+//         const userEmail = formData.get("userEmail");
 
+//         const { client, db } = await connectToDatabase();
+//         const Answers = await db.collection('Answers');
+
+//         await Answers.updateOne(
+//             { 'testID': test._id, 'userEmail': userEmail },
+//             {
+//                 $set: {
+//                     testID: test._id,
+//                     answers: answers,
+//                     userEmail: userEmail,
+//                     finished: true
+//                 }
+//             },
+//             { upsert: true }
+//         );
+//         return 'Success';
+//     } catch (error) {
+//         console.error(error);
+//         return 'An error has occured';
+//     }
+// }
+
+export async function upsertAnswers(answers: Array<string>, userEmail: string, test: Test) {
+    try {
         const { client, db } = await connectToDatabase();
         const Answers = await db.collection('Answers');
 
-        const existing = await Answers.findOne({ 'id': formData.get('testID'), 'email': email });
-
-        if (!existing) {
-            let stringArray = [];
-            for (let i = 0; i < numProblems; i++) {
-                stringArray.push("");
-            }
-
-            await Answers.insertOne({
-                'id': testID,
-                'answers': stringArray,
-                'email': email,
-                'finished': false,
-            });
-        }
-
         await Answers.updateOne(
-            { 'id': testID, 'email': email },
-            { "$set": { [`answers.${Number(currentProblem) - 1}`]: answer, 'finished': submitted } }
+            { 'testID': test._id, 'userEmail': userEmail },
+            {
+                $set: {
+                    testID: test._id,
+                    answers: answers,
+                    userEmail: userEmail,
+                    finished: true
+                }
+            },
+            { upsert: true }
         );
         return 'Success';
     } catch (error) {
