@@ -6,6 +6,8 @@ import { signOutAsync } from "@/app/lib/actions";
 import { signOut } from "@/auth";
 import DefaultLayout from "@/app/ui/default-layout/default-layout";
 
+//This component is the layout for every page located on the dashboard
+//This includes the Home Page, Registration, and Logins
 export default function Layout({
     children,
 }: Readonly<{
@@ -16,7 +18,7 @@ export default function Layout({
             <div className={`w-screen h-[5%] pl-[1vw] pb-[1vw] pt-[0px] text-cyan-700 ${lusitana.className} 
           Tablet:text-[60px] Tablet:h-[7%]
           Mobile-L:text-[34px] Mobile-L:h-[4%]
-          Mobile-S:text-[25px] Mobile-S:h-[3%]`}
+          Mobile-S:text-[25px] Mobile-S:h-[3%]`} //Used to style for mobile/smaller screens
             >
                 <span className={`align-text-bottom`}>
                     Tennessee Math Coalition
@@ -28,12 +30,12 @@ export default function Layout({
           Mobile-S:grid-cols-[13%_20%_25%_25%_5%_12%]
           Tablet:grid-cols-[10%_13%_18%_18%_31%_10%]`}
             >
-                <NavLinks></NavLinks>
+                <NavLinks></NavLinks> {/* The top bar on the layout */}
                 <div></div>
                 <form action={async () => {
                     'use server';
 
-                    await signOutAsync();
+                    await signOutAsync(); //Server Action to sign out using Auth.js
                 }} className={`flex items-center justify-center`}>
                     <button className={`text-white text-center hover:text-blue-300
               Mobile-S:text-[12px]

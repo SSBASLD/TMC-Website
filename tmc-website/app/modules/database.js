@@ -1,5 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
+//Exports the database for use wherever
+
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB = process.env.DB_NAME;
 

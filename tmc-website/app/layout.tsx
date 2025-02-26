@@ -3,7 +3,6 @@ import { inter } from "./ui/fonts";
 import { lusitana } from "@/app/ui/fonts";
 import "./globals.css";
 import NavLinks from "./ui/default-layout/nav-links";
-import { useEffect, useRef } from "react";
 import { signOutAsync } from "./lib/actions";
 import { signOut } from "@/auth";
 

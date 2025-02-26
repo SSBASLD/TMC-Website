@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import JoinTeamForm from "@/app/ui/join-team-form"
 
+//Just uses a template
 export default function Home() {
     return (
         <>

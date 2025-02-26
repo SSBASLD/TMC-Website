@@ -25,8 +25,6 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                 setAnswer(parsedAnswers[Number(problemNumber) - 1]);
             }
         }
-
-        console.log(answer);
     });
 
     const searchParams = useSearchParams();
@@ -60,8 +58,6 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                 let parsedAnswers = JSON.parse(currentAnswers);
                 parsedAnswers[Number(problemNumber) - 1] = value;
                 window.localStorage.setItem(`${test._id}-answers`, JSON.stringify(parsedAnswers));
-
-                console.log(window.localStorage.getItem(`${test._id}-answers`));
             }
         }
     }
@@ -152,7 +148,7 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                             }}
                             variant='contained'
                             sx={{ backgroundColor: 'primary.light', borderRadius: '30px', fontSize: { MobileL: '15px', MobileS: '10px' } }}
-                            type={test.problems.length == Number(problemNumber) ? "submit" : "button"}
+                            type="button"
                         >
                             {test.problems.length == Number(problemNumber) ? "Submit" : "Next"}
                         </Button>

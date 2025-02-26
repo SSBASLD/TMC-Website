@@ -10,6 +10,8 @@ import { z } from 'zod';
 import { emit } from "process";
 import { redirect } from "next/navigation";
 
+//All the server actions needed to push data onto the database
+
 export async function authenticate(
     prevState: string | undefined,
     formData: FormData,
@@ -31,6 +33,7 @@ export async function authenticate(
     }
 }
 
+//This function should not be used since registration will be done through a google form
 export async function createUser(prevState: string | undefined, formData: FormData) {
     const { client, db } = await connectToDatabase();
 
@@ -68,6 +71,7 @@ export async function createUser(prevState: string | undefined, formData: FormDa
     }
 }
 
+//This function should not be used since registration will be done through a google form
 export async function createTeam(prevState: string | undefined, formData: FormData) {
     const { client, db } = await connectToDatabase();
 
@@ -100,38 +104,10 @@ export async function createTeam(prevState: string | undefined, formData: FormDa
     }
 }
 
-// export async function upsertAnswers(prevState: string | undefined, formData: FormData) {
-//     try {
-//         const answers = JSON.parse(formData.get("answers")?.toString() || "{}");
-//         const test = JSON.parse(formData.get("test")?.toString() || "{}");
-//         const userEmail = formData.get("userEmail");
-
-//         const { client, db } = await connectToDatabase();
-//         const Answers = await db.collection('Answers');
-
-//         await Answers.updateOne(
-//             { 'testID': test._id, 'userEmail': userEmail },
-//             {
-//                 $set: {
-//                     testID: test._id,
-//                     answers: answers,
-//                     userEmail: userEmail,
-//                     finished: true
-//                 }
-//             },
-//             { upsert: true }
-//         );
-//         return 'Success';
-//     } catch (error) {
-//         console.error(error);
-//         return 'An error has occured';
-//     }
-// }
-
 export async function upsertAnswers(answers: Array<string>, userEmail: string, test: Test) {
     try {
         const { client, db } = await connectToDatabase();
-        const Answers = await db.collection('Answers');
+        const Answers = await db.collection('IndividualAnswers');
 
         await Answers.updateOne(
             { 'testID': test._id, 'userEmail': userEmail },

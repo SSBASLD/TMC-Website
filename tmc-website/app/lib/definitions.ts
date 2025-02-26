@@ -1,6 +1,7 @@
+//Define the structure of data that is saved in the database, so I can make sure that data is saved correctly
+
 export type User = {
-    name: string;
-    email: string;
+    userID: string;
     password: string;
 };
 
@@ -11,6 +12,7 @@ export type Test = {
     timeLimit: number;
     endDate: string;
     startDate: string;
+    type: "individual" | "team";
 }
 
 export type ProblemType = {

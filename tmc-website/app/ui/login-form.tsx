@@ -23,10 +23,10 @@ export default function LoginForm() {
                 <div className="relative h-[65px] content-right">
                     <input
                         className={`absolute left-[65px] peer block w-[77%] min-w-[200px] max-w-[700px] h-[100%] rounded-r-md border border-gray-200 py-[0.5%] pl-[1%] text-[16px] outline-2 placeholder:text-gray-500`}
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="Email"
+                        id="user_id"
+                        type="username"
+                        name="user_id"
+                        placeholder="User ID"
                         required
                     >
                     </input>
@@ -95,7 +95,7 @@ export default function LoginForm() {
                             Mobile-L:top-[40%] min-[426px]:top-[60%]
                             Mobile-M:top-[60%]`}
                         >
-                            Sign up!
+                            Sign up! {/* TODO: This needs to go to the google form where they sign up */}
                         </Link>
                     </p>
                 </div>

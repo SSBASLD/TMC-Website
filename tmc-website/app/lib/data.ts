@@ -5,6 +5,8 @@ import { connectToDatabase } from "@/app/modules/database";
 import { Test } from '@/app/lib/definitions'
 import { ObjectId } from "mongodb";
 
+//All the server actions needed to fetch data from the database
+
 export async function fetchTests() {
     try {
         console.log('Fetching tests...');
@@ -39,7 +41,7 @@ export async function fetchAnswers(testID: string, email: string) {
     try {
         const { client, db } = await connectToDatabase();
 
-        const Answers = await db.collection('Answers');
+        const Answers = await db.collection('IndividualAnswers');
         const answers = await Answers.findOne({ "testID": testID, 'userEmail': email });
 
         return answers;

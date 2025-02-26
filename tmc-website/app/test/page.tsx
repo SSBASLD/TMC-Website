@@ -43,7 +43,7 @@ export default async function Page({ searchParams }: { searchParams?: Promise<{ 
             <Box sx={{ width: '100%', height: '100%' }}>
                 <Box sx={{ backgroundColor: 'primary.main', height: '8vh', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingX: 2 }} className={`border-b-[0.5vh] border-black`}>
                     <Typography sx={{ fontSize: '3vh', color: 'black' }}>{test.testName}</Typography>
-                    <Timer testID={test._id} />
+                    <Timer testID={test._id} userEmail={email} test={test} />
                 </Box>
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>

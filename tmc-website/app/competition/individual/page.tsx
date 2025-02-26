@@ -1,5 +1,5 @@
 import { lusitana } from "@/app/ui/fonts";
-import { signOutAsync } from "../lib/actions";
+import { signOutAsync } from "../../lib/actions";
 import { Card, CardContent, Grid2, Typography } from "@mui/material";
 import { theme } from "@/theme.config";
 import { ThemeProvider } from "@emotion/react";
@@ -9,11 +9,13 @@ import { Test } from "@/app/lib/definitions"
 import { auth } from "@/auth";
 
 export default async function Home() {
-    const session = await auth();
+    const session = await auth(); //Get reference to the logged in user's session so that we can get the email
     const email = session?.user?.email ? session?.user?.email : '';
 
-    let tests = await fetchTests();
-    tests = tests.map((e: Test) => {
+    console.log(session);
+
+    let tests = (await fetchTests()).filter((test: Test) => test.type == "individual");
+    tests = tests.map((e: Test) => { //This is needed because MongoDB has the ._id property as an ObjectID instead of a string
         return {
             _id: e._id.toString(),
             problems: e.problems,
@@ -30,10 +32,15 @@ export default async function Home() {
         answers.push(await fetchAnswers(test._id, email));
     }
 
+    //Checks the answer collection to see if the user has already submitted the test
+    //TODO: need to add filtering by test availability dates
     tests = tests.filter((test: Test, index: number) => {
+        if (answers[index] == null) return true;
+
         return answers[index].finished != true;
     });
 
+    //Use the TestCards component to generate the UI
     const testCards = (<TestCards tests={tests}></TestCards>);
 
     return (
@@ -49,6 +56,7 @@ export default async function Home() {
             <Grid2 container spacing={2}>
                 {testCards}
 
+                {/* Displays text if no tests are available */}
                 {tests.length == 0 ? <Typography sx={{ color: 'black', fontSize: '30px' }}>No competitions are available right now</Typography> : ''}
             </Grid2>
         </main>

@@ -7,19 +7,32 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "@/theme.config";
 import Link from "next/link";
 
-
+//Might not need this since 
 export default function JoinTeamForm() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ height: '100%', width: '100%', boxShadow: 2, padding: '3%' }} className={`rounded-md bg-auto bg-slate-100`}>
-                <Typography sx={{ fontSize: '40px', color: 'black' }}>Join a Team</Typography>
+            <Box sx={{ height: '100%', width: '100%', boxShadow: 2, padding: '3%', flexDirection: "column", display: "flex" }} className={`rounded-md bg-auto bg-slate-100`}>
+                <Typography sx={{ fontSize: '40px', color: 'black' }}>Sign into a Team Account</Typography>
 
                 <Box sx={{ height: '6vh' }} />
 
                 <TextField
                     id='outlined-basic'
-                    label='Team ID'
+                    label='User ID'
+                    name='User ID'
+                    variant='outlined'
+                    fullWidth
+                    slotProps={{ htmlInput: { maxLength: 10 } }}
+                    sx={{ bgcolor: 'white', width: '50%' }}
+                />
+
+                <Box sx={{ height: '5vh' }}></Box>
+
+                <TextField
+                    id='outlined-basic'
+                    label='User ID'
+                    name='User ID'
                     variant='outlined'
                     fullWidth
                     slotProps={{ htmlInput: { maxLength: 10 } }}
@@ -35,7 +48,8 @@ export default function JoinTeamForm() {
                         <Button variant="contained" sx={{ width: '100px', height: '40px', fontSize: '18px' }}>Join</Button>
                     </Grid2>
                     <Grid2>
-                        <Link key="Register Team" href={`/dashboard/team-registration`} className={`text-blue-400`}>    Register a team here!</Link>
+                        {/* TODO: Need to change this to point to the google form where team registration will happen */}
+                        <Link key="Register Team" href={`/dashboard/team-registration`} className={`text-blue-400`}>Register a team here!</Link>
                     </Grid2>
                 </Grid2>
             </Box>

@@ -1,6 +1,7 @@
 import { lusitana } from "@/app/ui/fonts";
 import { signOutAsync } from "../../lib/actions";
 
+//Just a bunch of Tailwind and HTML to make the UI for the home page
 export default async function Home() {
   return (
     <main className={`p-[2%] w-[100%] h-[100%]`}>
