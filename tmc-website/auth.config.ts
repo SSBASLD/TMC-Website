@@ -1,18 +1,29 @@
 import next from 'next';
 import type { NextAuthConfig } from 'next-auth';
 import { fetchAnswers, fetchTestById } from '@/app/lib/data';
+import { User } from '@/app/lib/definitions';
+import { connectToDatabase } from '@/app/modules/database';
 
 var wasLoggedIn = false;
 
 export const authConfig = {
     pages: {
-        signIn: '/individual-login',
+        signIn: '/dashboard/login',
     },
     callbacks: {
         session: ({ session, token }) => {
+            console.log(token);
+
             return session;
         },
         jwt: ({ token, user }) => {
+            if (user) {
+                token.userID = user.userID;
+
+                console.log(token);
+                console.log("worked");
+            }
+
             return token;
         },
         authorized({ auth, request: { nextUrl } }) {
