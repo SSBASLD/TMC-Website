@@ -11,7 +11,7 @@ const TestCard = ({ id, name, timeLimit, startDate, endDate }: { id: string, nam
         <Grid2 size={{ Tablet: 12 / 4, MobileM: 12 / 2, MobileS: 12 }}>
             <Card sx={{ border: 'solid', borderColor: 'black', maxWidth: '300px' }}>
                 <CardContent>
-                    <Link key={id} href={`/test?problemNumber=1&testID=${id}`} className={`text-[20px] font-bold hover:text-blue-300`}>{name}</Link>
+                    <Link key={id} href={`/test/individual?problemNumber=1&testID=${id}`} className={`text-[20px] font-bold hover:text-blue-300`}>{name}</Link>
                     <Typography sx={{ fontSize: '20px' }}>Time Limit: {timeLimit.toString()} minutes</Typography>
                     <Typography sx={{ fontSize: '20px', fontStyle: 'italic' }}>Available between {startDate} and {endDate}</Typography>
                 </CardContent>

@@ -33,7 +33,7 @@ export default async function Page({ searchParams }: { searchParams?: Promise<{ 
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
     if (answers && answers.finished) {
-        redirect("/competition");
+        redirect("/competition/individual");
     }
 
     return (

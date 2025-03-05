@@ -50,3 +50,17 @@ export async function fetchAnswers(testID: string, userId: string) {
         throw new Error('Failed to fetch answer with specified ID');
     }
 }
+
+export async function fetchUserById(userId: string) {
+    try {
+        const { client, db } = await connectToDatabase();
+
+        const Users = await db.collection('Users');
+        const user = await Users.findOne({ 'user_id': userId });
+
+        return user;
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error("Failed to fetch user with specified ID");
+    }
+}

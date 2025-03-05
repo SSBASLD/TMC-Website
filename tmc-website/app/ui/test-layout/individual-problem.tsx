@@ -9,8 +9,10 @@ export default function IndividualProblem({ number, problemNumber }: { number: s
     const pathname = usePathname();
     const { replace } = useRouter();
 
+
     async function handleProblemChange(number: string) {
         const params = new URLSearchParams(searchParams);
+
         if (number) {
             params.set('problemNumber', number);
         } else {
@@ -29,8 +31,6 @@ export default function IndividualProblem({ number, problemNumber }: { number: s
                 onClick={() => {
                     handleProblemChange(number);
                 }}
-                component='button'
-                type='submit'
             >
                 {problemNumber == number ? <RoomOutlinedIcon sx={{ position: 'relative', top: '-20px', marginTop: '-1px' }} /> : ''}
                 <Typography align='center' sx={{ position: 'absolute', fontWeight: 'bold', fontSize: 20, pointerEvents: 'none' }} className={`select-none`}>{number}</Typography>
