@@ -10,9 +10,7 @@ import { auth } from "@/auth";
 
 export default async function Home() {
     const session = await auth(); //Get reference to the logged in user's session so that we can get the email
-    const email = session?.user?.email ? session?.user?.email : '';
-
-    console.log(session);
+    const userId = session?.userId ? session.userId : '';
 
     let tests = (await fetchTests()).filter((test: Test) => test.type == "individual");
     tests = tests.map((e: Test) => { //This is needed because MongoDB has the ._id property as an ObjectID instead of a string
@@ -29,7 +27,7 @@ export default async function Home() {
     let answers = [];
     for (let i = 0; i < tests.length; i++) {
         let test = tests[i];
-        answers.push(await fetchAnswers(test._id, email));
+        answers.push(await fetchAnswers(test._id, userId));
     }
 
     //Checks the answer collection to see if the user has already submitted the test

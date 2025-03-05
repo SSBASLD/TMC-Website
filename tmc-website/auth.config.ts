@@ -12,16 +12,13 @@ export const authConfig = {
     },
     callbacks: {
         session: ({ session, token }) => {
-            console.log(token);
+            session.userId = token.userID;
 
             return session;
         },
         jwt: ({ token, user }) => {
             if (user) {
-                token.userID = user.userID;
-
-                console.log(token);
-                console.log("worked");
+                token.userID = user.user_id;
             }
 
             return token;

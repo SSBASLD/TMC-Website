@@ -104,18 +104,18 @@ export async function createTeam(prevState: string | undefined, formData: FormDa
     }
 }
 
-export async function upsertAnswers(answers: Array<string>, userEmail: string, test: Test) {
+export async function upsertAnswers(answers: Array<string>, userId: string, test: Test) {
     try {
         const { client, db } = await connectToDatabase();
         const Answers = await db.collection('IndividualAnswers');
 
         await Answers.updateOne(
-            { 'testID': test._id, 'userEmail': userEmail },
+            { 'testID': test._id, 'userId': userId },
             {
                 $set: {
                     testID: test._id,
                     answers: answers,
-                    userEmail: userEmail,
+                    userId: userId,
                     finished: true
                 }
             },

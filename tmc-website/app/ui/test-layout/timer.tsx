@@ -6,16 +6,21 @@ import { Button, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Timer({ testID, userEmail, test }: { testID: string, userEmail: string, test: Test }) {
+export default function Timer({ testID, userId, test }: { testID: string, userId: string, test: Test }) {
+
     const { replace } = useRouter();
 
     const [time, setTime] = useState(test.timeLimit * 60);
     const [isActive, setIsActive] = useState(true);
 
+    console.log(time);
+
     useEffect(() => {
         if (typeof window !== "undefined" && window.localStorage) {
             //Probably a better way to do this, but I did this because 0 counts as false for the || statement, so it would never reach 0
-            const savedTime = window.localStorage.getItem(`${testID}-savedTime`) != undefined ? Number(window.localStorage.getItem(`${testID}-savedTime`)) : test.timeLimit * 60;
+            const savedTime = window.localStorage.getItem(`${testID}-${userId}-savedTime`) != undefined ? Number(window.localStorage.getItem(`${testID}-${userId}-savedTime`)) : test.timeLimit * 60;
+
+            console.log(savedTime);
 
             if (savedTime == time) return;
 
@@ -30,9 +35,9 @@ export default function Timer({ testID, userEmail, test }: { testID: string, use
             setTime(time - 1);
 
             if (time <= 0) {
-                let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-answers`) || "") : [""];
+                let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-${userId}-answers`) || "") : [""];
 
-                upsertAnswers(answers, userEmail, test)
+                upsertAnswers(answers, userId, test)
                 replace("/competition");
             }
         }, 1000);
@@ -52,7 +57,7 @@ export default function Timer({ testID, userEmail, test }: { testID: string, use
     function saveTime() {
         if (typeof window !== undefined && window.localStorage) {
             console.log(time - 1);
-            window.localStorage.setItem(`${testID}-savedTime`, `${time - 1}`);
+            window.localStorage.setItem(`${testID}-${userId}-savedTime`, `${time - 1}`);
         }
     }
 

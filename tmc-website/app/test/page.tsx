@@ -15,9 +15,7 @@ import { redirect } from 'next/navigation'
 
 export default async function Page({ searchParams }: { searchParams?: Promise<{ problemNumber?: string, testID?: string }> }) {
     const session = await auth();
-    const user = session?.user;
-
-    const email = user?.email ? user?.email : '';
+    const userId = session?.userId ? session.userId : '';
 
     let resolvedSearchParams = await searchParams;
 
@@ -29,12 +27,12 @@ export default async function Page({ searchParams }: { searchParams?: Promise<{ 
         test._id = test._id.toString();
     }
 
-    const answers = await fetchAnswers(testID, email);
-    const answer = answers.answers[Number(problemNumber) - 1];
+    const answers = await fetchAnswers(testID, userId);
+    const answer = answers ? answers.answers[Number(problemNumber) - 1] : '';
 
     const currentProblem = test.problems[Number(problemNumber) - 1];
 
-    if (answers.finished) {
+    if (answers && answers.finished) {
         redirect("/competition");
     }
 
@@ -43,11 +41,11 @@ export default async function Page({ searchParams }: { searchParams?: Promise<{ 
             <Box sx={{ width: '100%', height: '100%' }}>
                 <Box sx={{ backgroundColor: 'primary.main', height: '8vh', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingX: 2 }} className={`border-b-[0.5vh] border-black`}>
                     <Typography sx={{ fontSize: '3vh', color: 'black' }}>{test.testName}</Typography>
-                    <Timer testID={test._id} userEmail={email} test={test} />
+                    <Timer testID={test._id} userId={userId} test={test} />
                 </Box>
 
                 <Box sx={{ height: '84vh', display: 'flex', justifyContent: 'center', paddingY: 3, color: 'black', overflowY: 'scroll' }}>
-                    <Problem test={test} problemNumber={problemNumber} problem={currentProblem} userEmail={email} currentAnswer={answer} />
+                    <Problem test={test} problemNumber={problemNumber} problem={currentProblem} userId={userId} currentAnswer={answer} />
                 </Box>
 
                 <Box sx={{ height: '8vh', backgroundColor: 'primary.main', width: '100%' }} className={`border-t-[0.5vh] border-black`}>

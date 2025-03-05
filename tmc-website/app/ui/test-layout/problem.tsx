@@ -12,12 +12,12 @@ import ProblemsButton from "@/app/ui/test-layout/problems-button";
 
 let formerNumber = 0;
 
-export default function Problem({ test, problemNumber, problem, userEmail, currentAnswer }: { test: Test, problemNumber: string, problem: ProblemType, userEmail: string, currentAnswer: string }) {
+export default function Problem({ test, problemNumber, problem, userId, currentAnswer }: { test: Test, problemNumber: string, problem: ProblemType, userId: string, currentAnswer: string }) {
     const [answer, setAnswer] = useState(currentAnswer);
 
     useEffect(() => {
         if (typeof window !== undefined && window.localStorage) {
-            let answers = window.localStorage.getItem(`${test._id}-answers`);
+            let answers = window.localStorage.getItem(`${test._id}-${userId}-answers`);
             if (currentAnswer == undefined) {
                 setAnswer('');
             } else {
@@ -47,17 +47,17 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
 
     function saveAnswer(value: string) {
         if (typeof window !== undefined && window.localStorage) {
-            let currentAnswers = window.localStorage.getItem(`${test._id}-answers`);
+            let currentAnswers = window.localStorage.getItem(`${test._id}-${userId}-answers`);
             if (currentAnswers == undefined) {
                 let answers = [];
                 for (let i = 0; i < test.problems.length; i++) {
                     answers.push('');
                 }
-                window.localStorage.setItem(`${test._id}-answers`, JSON.stringify(answers));
+                window.localStorage.setItem(`${test._id}-${userId}-answers`, JSON.stringify(answers));
             } else {
                 let parsedAnswers = JSON.parse(currentAnswers);
                 parsedAnswers[Number(problemNumber) - 1] = value;
-                window.localStorage.setItem(`${test._id}-answers`, JSON.stringify(parsedAnswers));
+                window.localStorage.setItem(`${test._id}-${userId}-answers`, JSON.stringify(parsedAnswers));
             }
         }
     }
@@ -102,7 +102,7 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                     className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
                     id="answers"
                     name="answers"
-                    value={typeof window !== undefined && window.localStorage ? window.localStorage.getItem(`${test._id}-answers`) || "" : ""}
+                    value={typeof window !== undefined && window.localStorage ? window.localStorage.getItem(`${test._id}-${userId}-answers`) || "" : ""}
                     onChange={(e) => { }}
                 />
 
@@ -116,9 +116,9 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
 
                 <input
                     className={`w-[0%] h-[0%] text-[16px] outline-2 placeholder:text-gray-500`}
-                    id="userEmail"
-                    name="userEmail"
-                    value={userEmail}
+                    id="userId"
+                    name="userId"
+                    value={userId}
                     onChange={(e) => { }}
                 />
 
@@ -140,9 +140,9 @@ export default function Problem({ test, problemNumber, problem, userEmail, curre
                                 saveAnswer(answer);
 
                                 if (test.problems.length == Number(problemNumber)) {
-                                    let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-answers`) || "") : [""];
+                                    let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-${userId}-answers`) || "") : [""];
 
-                                    upsertAnswers(answers, userEmail, test);
+                                    upsertAnswers(answers, userId, test);
                                     replace("/competition");
                                 }
                             }}

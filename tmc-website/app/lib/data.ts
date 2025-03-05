@@ -37,12 +37,12 @@ export async function fetchTestById(id: string) {
     }
 }
 
-export async function fetchAnswers(testID: string, email: string) {
+export async function fetchAnswers(testID: string, userId: string) {
     try {
         const { client, db } = await connectToDatabase();
 
         const Answers = await db.collection('IndividualAnswers');
-        const answers = await Answers.findOne({ "testID": testID, 'userEmail': email });
+        const answers = await Answers.findOne({ "testID": testID, 'userId': userId });
 
         return answers;
     } catch (error) {
