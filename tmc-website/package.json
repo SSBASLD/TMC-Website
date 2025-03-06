@@ -27,6 +27,8 @@
     "react-dom": "^18",
     "react-latex-next": "^3.0.0",
     "react-mathquill": "^1.0.3",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "use-debounce": "^10.0.4",
     "zod": "^3.23.8"
   },

@@ -143,7 +143,7 @@ export default function Problem({ test, problemNumber, problem, userId, currentA
                                     let answers = typeof window !== undefined && window.localStorage ? JSON.parse(window.localStorage.getItem(`${test._id}-${userId}-answers`) || "") : [""];
 
                                     upsertAnswers(answers, userId, test);
-                                    replace("/competition");
+                                    replace("/competition/individual"); //TODO: Need to make paths a variable so i don't have to change every instance when i change the path   
                                 }
                             }}
                             variant='contained'
