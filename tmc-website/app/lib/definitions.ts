@@ -1,7 +1,7 @@
 //Define the structure of data that is saved in the database, so I can make sure that data is saved correctly
 
 export type User = {
-    userID: string;
+    user_id: string;
     password: string;
 };
 
