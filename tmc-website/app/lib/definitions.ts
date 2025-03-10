@@ -3,6 +3,7 @@
 export type User = {
     user_id: string;
     password: string;
+    team?: string;
 };
 
 export type Test = {

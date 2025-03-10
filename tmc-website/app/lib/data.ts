@@ -2,7 +2,7 @@
 
 import { connectToDatabase } from "@/app/modules/database";
 
-import { Test } from '@/app/lib/definitions'
+import { Test, User } from '@/app/lib/definitions'
 import { ObjectId } from "mongodb";
 
 //All the server actions needed to fetch data from the database
@@ -51,7 +51,7 @@ export async function fetchAnswers(testID: string, userId: string) {
     }
 }
 
-export async function fetchUserById(userId: string) {
+export async function fetchUserById(userId: string): Promise<User | null> {
     try {
         const { client, db } = await connectToDatabase();
 

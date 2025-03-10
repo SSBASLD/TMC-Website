@@ -41,7 +41,7 @@ export default async function Home() {
     });
 
     //Use the TestCards component to generate the UI
-    const testCards = (<TestCards tests={tests}></TestCards>);
+    const testCards = (<TestCards tests={tests} team={true}></TestCards>);
 
     return (
         <main className={`p-[2%] w-[100%] h-[100%] overflow-scroll`}>
@@ -50,10 +50,10 @@ export default async function Home() {
                 Tablet:text-[40px] 
                 Mobile-S:text-[30px]`}
             >
-                {user.team ? "Individual Competitions" : "You need to register for a team"}
+                {user?.team ? "Individual Competitions" : "You need to register for a team"}
             </p>
 
-            {user.team ?
+            {user?.team ?
                 <Grid2 container spacing={2}>
                     {testCards}
 

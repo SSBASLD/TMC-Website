@@ -39,7 +39,7 @@ export default async function Home() {
     });
 
     //Use the TestCards component to generate the UI
-    const testCards = (<TestCards tests={tests}></TestCards>);
+    const testCards = (<TestCards tests={tests} team={false}></TestCards>);
 
     return (
         <main className={`p-[2%] w-[100%] h-[100%] overflow-scroll`}>
